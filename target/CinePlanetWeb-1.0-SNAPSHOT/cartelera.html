@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlanet</title>
+    <style>
+        :root {
+            --primary-color: #e50914;
+            --secondary-color: #221f1f;
+            --text-color: #ffffff;
+            --background-dark: #000000;
+            --background-light: #141414;
+            --card-bg: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-color);
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            background-color: #333;
+            color: white;
+            width: 200px;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        main {
+            padding: 1rem;
+        }
+        
+        .hero {
+            height: 400px;
+            background-image: url("https://images.cdn.prd.api.discomax.com/2024/07/12/104954ab-55cf-3d15-931b-c53b15473b15.jpeg?w=2000&f=webp");
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-content {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            max-width: 50%;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-desc {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .filters {
+            background-color: var(--background-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .carousel {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .carousel-container {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+        
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .movie-card {
+            min-width: 200px;
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .movie-info {
+            padding: 0.8rem;
+        }
+        
+        .movie-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+        
+        .movie-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .star {
+            color: gold;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .carousel-prev {
+            left: -20px;
+        }
+        
+        .carousel-next {
+            right: -20px;
+        }
+        
+        .formats {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .format-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .btn-book {
+            width: 100%;
+            margin-top: 0.8rem;
+            padding: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-link a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        
+        .footer-link a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            color: #777;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 300px;
+            }
+            
+            .hero-content {
+                max-width: 80%;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">CineReserva</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Cartelera</a>
+                <a href="#" class="nav-link">Próximos Estrenos</a>
+                <a href="#" class="nav-link">Cines</a>
+                <a href="#" class="nav-link">Promociones</a>
+            </div>
+            <div class="user-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar películas...">
+                </div>
+                <button class="btn btn-primary">Mi Cuenta</button>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Dune: Parte 2</h1>
+                <p class="hero-desc">Paul Atreides se alía con Chani y los fremen en busca de venganza y decide luchar por impedir un futuro terrible que solo él puede prever.</p>
+                <button class="btn btn-primary">Ver Horarios</button>
+            </div>
+        </section>
+        
+        <section class="filters">
+            <div class="filter-header">
+                <h2 class="filter-title">Filtros</h2>
+                <button class="btn btn-primary">Aplicar</button>
+            </div>
+            <div class="filter-options">
+                <select class="filter-select">
+                    <option>Ciudad</option>
+                    <option>Madrid</option>
+                    <option>Barcelona</option>
+                    <option>Valencia</option>
+                    <option>Sevilla</option>
+                </select>
+                <select class="filter-select">
+                    <option>Cine</option>
+                    <option>Cinesa</option>
+                    <option>Yelmo</option>
+                    <option>Kinepolis</option>
+                    <option>Odeon</option>
+                </select>
+                <select class="filter-select">
+                    <option>Día</option>
+                    <option>Hoy</option>
+                    <option>Mañana</option>
+                    <option>Viernes 25</option>
+                    <option>Sábado 26</option>
+                </select>
+                <select class="filter-select">
+                    <option>Género</option>
+                    <option>Acción</option>
+                    <option>Comedia</option>
+                    <option>Drama</option>
+                    <option>Terror</option>
+                </select>
+                <select class="filter-select">
+                    <option>Idioma</option>
+                    <option>Español</option>
+                    <option>V.O. Subtitulada</option>
+                    <option>Doblada</option>
+                </select>
+                <select class="filter-select">
+                    <option>Formato</option>
+                    <option>2D</option>
+                    <option>3D</option>
+                    <option>IMAX</option>
+                    <option>4DX</option>
+                </select>
+                <select class="filter-select">
+                    <option>Censura</option>
+                    <option>Todos los públicos</option>
+                    <option>+7</option>
+                    <option>+12</option>
+                    <option>+16</option>
+                    <option>+18</option>
+                </select>
+            </div>
+        </section>
+        
+        <h2 class="section-title">En Cartelera Hoy</h2>
+        <section class="carousel">
+            <div class="carousel-container">
+                <div class="movie-card">
+                    <img src="https://images.cdn.prd.api.discomax.com/2024/07/12/104954ab-55cf-3d15-931b-c53b15473b15.jpeg?w=2000&f=webp" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Dune: Parte 2</h3>
+                        <div class="movie-meta">
+                            <span>Sci-Fi</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">3D</span>
+                            <span class="format-tag">IMAX</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="https://images.cdn.prd.api.discomax.com/2024/07/12/104954ab-55cf-3d15-931b-c53b15473b15.jpeg?w=2000&f=webp" alt="Película" class="movie-poster">
+
+                    <div class="movie-info">
+                        <h3 class="movie-title">El Reino del Planeta de los Simios</h3>
+                        <div class="movie-meta">
+                            <span>Acción</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">3D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Godzilla x Kong</h3>
+                        <div class="movie-meta">
+                            <span>Acción</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.3</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">4DX</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Inside Out 2</h3>
+                        <div class="movie-meta">
+                            <span>Animación</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">3D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Venom 3</h3>
+                        <div class="movie-meta">
+                            <span>Acción</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.2</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">IMAX</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav carousel-prev">❮</div>
+            <div class="carousel-nav carousel-next">❯</div>
+        </section>
+        
+        <h2 class="section-title">Próximos Estrenos</h2>
+        <section class="carousel">
+            <div class="carousel-container">
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Misión Imposible 8</h3>
+                        <div class="movie-meta">
+                            <span>Estreno: 15 Mayo</span>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">IMAX</span>
+                        </div>
+                        <button class="btn-book">Pre-reserva</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Deadpool 3</h3>
+                        <div class="movie-meta">
+                            <span>Estreno: 3 Junio</span>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">3D</span>
+                        </div>
+                        <button class="btn-book">Pre-reserva</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Avatar 3</h3>
+                        <div class="movie-meta">
+                            <span>Estreno: 10 Junio</span>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">3D</span>
+                            <span class="format-tag">IMAX</span>
+                        </div>
+                        <button class="btn-book">Pre-reserva</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Jurassic World 4</h3>
+                        <div class="movie-meta">
+                            <span>Estreno: 24 Junio</span>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">4DX</span>
+                        </div>
+                        <button class="btn-book">Pre-reserva</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Furiosa</h3>
+                        <div class="movie-meta">
+                            <span>Estreno: 5 Mayo</span>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">IMAX</span>
+                        </div>
+                        <button class="btn-book">Pre-reserva</button>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav carousel-prev">❮</div>
+            <div class="carousel-nav carousel-next">❯</div>
+        </section>
+        
+        <h2 class="section-title">Recomendados para ti</h2>
+        <section class="carousel">
+            <div class="carousel-container">
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Alien: Romulus</h3>
+                        <div class="movie-meta">
+                            <span>Terror/Sci-Fi</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Bad Boys 4</h3>
+                        <div class="movie-meta">
+                            <span>Acción/Comedia</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.1</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Mufasa: El Rey León</h3>
+                        <div class="movie-meta">
+                            <span>Animación</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                            <span class="format-tag">3D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Barbie 2</h3>
+                        <div class="movie-meta">
+                            <span>Comedia</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.0</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="/api/placeholder/200/300" alt="Película" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Joker: Folie à Deux</h3>
+                        <div class="movie-meta">
+                            <span>Drama/Thriller</span>
+                            <div class="movie-rating">
+                                <span class="star">★</span>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <div class="formats">
+                            <span class="format-tag">2D</span>
+                        </div>
+                        <button class="btn-book">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav carousel-prev">❮</div>
+            <div class="carousel-nav carousel-next">❯</div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">CineReserva</h3>
+                <p>Tu app para reservar entradas de cine de forma fácil y rápida.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Enlaces</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Sobre nosotros</a></li>
+                    <li class="footer-link"><a href="#">Términos y condiciones</a></li>
+                    <li class="footer-link"><a href="#">Política de privacidad</a></li>
+                    <li class="footer-link"><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Contacto</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Email</a></li>
+                    <li class="footer-link"><a href="#">Teléfono</a></li>
+                    <li class="footer-link"><a href="#">Soporte</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 CineReserva. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para hacer funcionales los carruseles
+        document.querySelectorAll('.carousel-next').forEach(button => {
+            button.addEventListener('click', () => {
+                const container = button.parentElement.querySelector('.carousel-container');
+                container.scrollLeft += 300;
+            });
+        });
+        
+        document.querySelectorAll('.carousel-prev').forEach(button => {
+            button.addEventListener('click', () => {
+                const container = button.parentElement.querySelector('.carousel-container');
+                container.scrollLeft -= 300;
+            });
+        });
+    </script>
+</body>
+</html>
