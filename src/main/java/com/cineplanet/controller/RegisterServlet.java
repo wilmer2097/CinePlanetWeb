@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
         User u = new User();
         u.setNombre(nombre);
         u.setEmail(email);
-        u.setPassword(pass);    // en producción deberías hashear aquí
+        u.setPassword(pass);   
         u.setTelefono(telefono);
 
         try {
