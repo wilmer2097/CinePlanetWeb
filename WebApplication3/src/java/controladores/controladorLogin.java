@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Guillermo
  */
-@WebServlet(urlPatterns = {"/controladorLogin"})
+@WebServlet(name = "controladorLogin", urlPatterns = {"/controladorLogin"})
 public class controladorLogin extends HttpServlet {
 
     /**
