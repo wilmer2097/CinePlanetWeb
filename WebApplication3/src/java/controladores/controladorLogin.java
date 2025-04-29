@@ -90,15 +90,11 @@ public class controladorLogin extends HttpServlet {
                     System.out.println("Contraseña incorrecta");
                     response.sendRedirect("./vistas/login.jsp?error=contraseña");
                     request.setAttribute("error", "Usuario o contraseña incorrectos.");
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("./vistas/login.jsp");
-                    dispatcher.forward(request, response);
                 }
             } else {
                 request.setAttribute("error", "Usuario o contraseña incorrectos.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("./vistas/login.jsp");
-                dispatcher.forward(request, response);
             }
-
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./vistas/login.jsp");dispatcher.forward(request, response);
             resultado.close();
             statement.close();
             conexion.close();
