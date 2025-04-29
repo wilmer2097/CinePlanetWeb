@@ -6,11 +6,17 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,18 +37,6 @@ public class controladorLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet controladorLogin</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet controladorLogin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,9 +63,53 @@ public class controladorLogin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         processRequest(request, response);
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tecsolve?useTimeZone=true&"
+                + "serverTimezone=UTC&autoReconnect=true", "root", "12345678");
+            String usuario=request.getParameter("usuario");
+            String contraseña=request.getParameter("clave");
+                 
+            String sql = "SELECT clave FROM usuario WHERE nombre = ?";
+            PreparedStatement statement = conexion.prepareStatement(sql);
+            statement.setString(1, usuario);
+
+            ResultSet resultado = statement.executeQuery();
+
+            if (resultado.next()) {
+                String contraseñaBD = resultado.getString("clave");
+
+                if (contraseña.equals(contraseñaBD)) { // ← comparación segura
+                    // Inicio de sesión correcto
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuario", usuario);
+                    request.getRequestDispatcher("./vistas/dashBoard.jsp").forward(request, response);
+                } else {
+                    System.out.println("Contraseña incorrecta");
+                    response.sendRedirect("./vistas/login.jsp?error=contraseña");
+                    request.setAttribute("error", "Usuario o contraseña incorrectos.");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("./vistas/login.jsp");
+                    dispatcher.forward(request, response);
+                }
+            } else {
+                request.setAttribute("error", "Usuario o contraseña incorrectos.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("./vistas/login.jsp");
+                dispatcher.forward(request, response);
+            }
+
+            resultado.close();
+            statement.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        
+        
+        
+                
+                
     }
 
     /**

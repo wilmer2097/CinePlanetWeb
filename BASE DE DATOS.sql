@@ -20,7 +20,7 @@ create table usuario (
     telefono varchar(9),
     dni varchar(8),
     correo varchar(30),
-    password varchar(32),
+    clave varchar(32),
     rol enum('admin','cliente'),
     fechaRegistro datetime,
     PRIMARY KEY(idUsuario)
