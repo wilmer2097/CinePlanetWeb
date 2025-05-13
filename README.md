@@ -64,3 +64,6 @@ Desarrollar una solución web completa que permita:
 1. Clona el repositorio:  
    ```bash
    git clone https://github.com/tu-usuario/tecsolve.git
+   cd TECSOLVE
+   ```
+
