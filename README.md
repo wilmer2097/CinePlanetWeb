@@ -46,7 +46,6 @@ Desarrollar una solución web completa que permita:
 - **Base de Datos:** MySQL  
 - **Control de versiones:** Git / GitHub  
 
----
 
 ## 💡 Funcionalidades Esperadas
 
@@ -57,7 +56,6 @@ Desarrollar una solución web completa que permita:
 - Generación de comprobantes de compra  
 - Módulo de delivery (futuro)  
 
----
 ## 📌 Estado del Proyecto
 
 🟢 En desarrollo
