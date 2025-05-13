@@ -1,4 +1,4 @@
-# Proyecto Tecsolve
+# Aplicación Web para Tecsolvers
 
 ## 👥 Integrantes
 
