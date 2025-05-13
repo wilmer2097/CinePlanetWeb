@@ -15,7 +15,7 @@ public class usuario {
     public usuario() {
     }
 
-    public usuario(int idUsuario, String nombre, String apellido, String direccion, String telefono, String dni, String correo, String clave, String rol, String fechaRegistro) {
+    public usuario(int idUsuario, String nombre, String apellido, String direccion, String telefono, String dni, String correo, String rol) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -23,22 +23,10 @@ public class usuario {
         this.telefono = telefono;
         this.dni = dni;
         this.correo = correo;
-        this.clave = clave;
         this.rol = rol;
-        this.fechaRegistro = fechaRegistro;
     }
 
-    public usuario(String nombre, String apellido, String direccion, String telefono, String dni, String correo, String rol) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.dni = dni;
-        this.correo = correo;
-        this.rol = rol;
-    }
-    
-    
+
 
     public int getIdUsuario() {
         return idUsuario;

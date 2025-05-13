@@ -2,7 +2,7 @@ package entidades;
 
 public class producto {
     private int idProducto;
-    private int idCategoria;
+    private categoria categoria;
     private String nombreProducto;
     private String descripcion;
     private double precio;
@@ -12,15 +12,18 @@ public class producto {
     public producto() {
     }
 
-    public producto(int idProducto, int idCategoria, String nombreProducto, String descripcion, double precio, int stock, String urlImagen) {
+    public producto(int idProducto, categoria categoria, String nombreProducto, String descripcion, double precio, int stock) {
         this.idProducto = idProducto;
-        this.idCategoria = idCategoria;
+        this.categoria = categoria;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
-        this.urlImagen = urlImagen;
     }
+
+
+
+
 
     public int getIdProducto() {
         return idProducto;
@@ -28,14 +31,6 @@ public class producto {
 
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
     }
 
     public String getNombreProducto() {
@@ -81,6 +76,14 @@ public class producto {
     @Override
     public String toString() {
         return getNombreProducto(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    public categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(categoria categoria) {
+        this.categoria = categoria;
     }
     
     

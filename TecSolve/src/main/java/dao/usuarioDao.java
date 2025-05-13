@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import entidades.usuario;
@@ -30,7 +26,7 @@ public class usuarioDao {
         PreparedStatement ps;
         ResultSet rs;
 
-        String cadSQL = "select nombre, apellido, correo, telefono, dni, direccion, rol from usuario where idUsuario=?";
+        String cadSQL = "select idUsuario, nombre, apellido, correo, telefono, dni, direccion, rol from usuario where idUsuario=?";
 
         try {
             ps = cnx.prepareStatement(cadSQL);
@@ -39,6 +35,7 @@ public class usuarioDao {
 
             if (rs.next()) {
                 u = new usuario();
+                u.setIdUsuario(rs.getInt("idUsuario"));
                 u.setNombre(rs.getString("nombre"));
                 u.setApellido(rs.getString("apellido"));
                 u.setCorreo(rs.getString("correo"));
@@ -57,20 +54,21 @@ public class usuarioDao {
     public List<usuario> getList() {
         PreparedStatement ps;
         ResultSet rs;
-        String cadSQL = "select nombre, apellido, correo, telefono, dni, direccion, rol from usuario";
+        String cadSQL = "select idUsuario, nombre, apellido, direccion, telefono, dni, correo, rol from usuario";
         List<usuario> lista = null;
         try {
             ps = cnx.prepareStatement(cadSQL);
             rs = ps.executeQuery();
             lista = new ArrayList<>();
             while (rs.next()) {
-                usuario u = new usuario(
+                usuario u= new usuario(
+                rs.getInt("idUsuario"),        
                 rs.getString("nombre"),
                 rs.getString("apellido"),
-                rs.getString("correo"),
-                rs.getString("telefono"),
                 rs.getString("direccion"),
+                rs.getString("telefono"),
                 rs.getString("dni"),
+                rs.getString("correo"),
                 rs.getString("rol")
                 );
                 lista.add(u);

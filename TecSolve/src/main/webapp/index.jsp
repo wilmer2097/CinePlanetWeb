@@ -13,6 +13,6 @@
     </head>
     <body>
         <% response.sendRedirect(request.getContextPath()
-        + "/controladorAdmin?accion=principal");%>
+        + "/controladorAdmin?accion=dashboard");%>
     </body>
 </html>

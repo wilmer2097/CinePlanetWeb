@@ -4,7 +4,11 @@
  */
 package controlador;
 
+import dao.categoriaDao;
+import dao.productoDao;
 import dao.usuarioDao;
+import entidades.categoria;
+import entidades.producto;
 import entidades.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "controladorAdmin", urlPatterns = {"/controladorAdmin"})
 public class controladorAdmin extends HttpServlet {
 
+    productoDao dao = new productoDao();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,26 +42,53 @@ public class controladorAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
         if (accion != null) {
-            if (accion.equals("Registrar")) {
+            if (accion.equals("dashboard")) {
                 request.getRequestDispatcher("./vistas/dashboard.jsp").forward(request, response);
-            } else if (accion.equals("principal")) {
+
+            } else if (accion.equals("usuario")) {
                 List<usuario> lista = new usuarioDao().getList();
                 request.setAttribute("lista", lista);
-                request.getRequestDispatcher("./vistas/dashboard.jsp").forward(request, response);
-            } else if (accion.equals("edit")) {
-                Integer idx = Integer.valueOf(request.getParameter("id"));
-                usuario u = new usuarioDao().get(idx);
+                request.getRequestDispatcher("./vistas/usuarios.jsp").forward(request, response);
 
+            } else if (accion.equals("producto")) {
+                List<categoria> listaCat = new categoriaDao().getList();
+                request.setAttribute("listaCategoria", listaCat);
+                List<producto> lista = new productoDao().getList();
+                request.setAttribute("listaProd", lista);
+                request.getRequestDispatcher("./vistas/producto.jsp").forward(request, response);
+
+            } else if (accion.equals("venta")) {
+                List<usuario> lista = new usuarioDao().getList();
+                request.setAttribute("lista", lista);
+                request.getRequestDispatcher("./vistas/venta.jsp").forward(request, response);
+
+            } else if (accion.equals("editarUsuario")) {
+                Integer idx = Integer.valueOf(request.getParameter("idUsuario"));
+                usuario u = new usuarioDao().get(idx);
+                request.setAttribute("idUsuario", "" + u.getIdUsuario());
                 request.setAttribute("nombre", "" + u.getNombre());
                 request.setAttribute("apellido", "" + u.getApellido());
                 request.setAttribute("correo", "" + u.getCorreo());
                 request.setAttribute("direccion", "" + u.getDireccion());
-                request.setAttribute("dni", "" +u.getDni());
-                request.setAttribute("telefono", "" +u.getTelefono());
-                request.setAttribute("dni", "" +u.getDni());
-                
-            } else if (accion.equals("delete")) {
+                request.setAttribute("dni", "" + u.getDni());
+                request.setAttribute("telefono", "" + u.getTelefono());
+                request.setAttribute("dni", "" + u.getDni());
+                request.getRequestDispatcher("./vistas/dashboard.jsp").forward(request, response);
 
+            } else if (accion.equals("borrarUsuario")) {
+
+            } else if (accion.equals("editarProducto")) {
+                List<categoria> listaCat = new categoriaDao().getList();
+                request.setAttribute("listaCategoria", listaCat);
+                int id = Integer.parseInt(request.getParameter("id"));
+                producto prod = dao.get(id);
+                request.setAttribute("producto", prod);
+                request.getRequestDispatcher("./vistas/producto.jsp").forward(request, response);
+            } else if (accion.equals("borrarProducto")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                productoDao dao = new productoDao();
+                dao.eliminarProducto(id);
+                response.sendRedirect("controladorAdmin?accion=producto");
             }
         }
     }
@@ -86,7 +119,43 @@ public class controladorAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion = request.getParameter("accion");
+
+        String nombre = request.getParameter("nombreProducto");
+        String descripcion = request.getParameter("descripcion");
+        double precio = Double.parseDouble(request.getParameter("precio"));
+        int stock = Integer.parseInt(request.getParameter("stock"));
+        int idCategoria = Integer.parseInt(request.getParameter("idCategoria"));
+
+        categoria cat = new categoria();
+        cat.setIdCategoria(idCategoria);
+
+        productoDao dao = new productoDao();
+
+        if ("agregar".equals(accion)) {
+            producto nuevo = new producto();
+            nuevo.setNombreProducto(nombre);
+            nuevo.setDescripcion(descripcion);
+            nuevo.setPrecio(precio);
+            nuevo.setStock(stock);
+            nuevo.setCategoria(cat);
+
+            dao.agregarProducto(nuevo);
+        } else if ("actualizar".equals(accion)) {
+            int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+
+            producto actualizado = new producto();
+            actualizado.setIdProducto(idProducto);
+            actualizado.setNombreProducto(nombre);
+            actualizado.setDescripcion(descripcion);
+            actualizado.setPrecio(precio);
+            actualizado.setStock(stock);
+            actualizado.setCategoria(cat);
+
+            dao.actualizarProducto(actualizado);
+        }
+
+        response.sendRedirect("controladorAdmin?accion=producto");
     }
 
     /**
