@@ -58,6 +58,9 @@ Desarrollar una solución web completa que permita:
 - Módulo de delivery (futuro)  
 
 ---
+## 📌 Estado del Proyecto
+
+🟢 En desarrollo
 
 ## 🚀 Instalación y Uso
 
