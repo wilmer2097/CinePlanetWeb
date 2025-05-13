@@ -40,7 +40,7 @@ Desarrollar una solución web completa que permita:
 ## 🛠️ Tecnologías Utilizadas
 
 - **Lenguajes:** Java, HTML5, CSS3, JavaScript  
-- **Librerías:** [React]  
+- **Librerías:**  
 - **Backend:** Java, JSTL  
 - **Frontend:** CSS3, Bootstrap 4.6  
 - **Base de Datos:** MySQL  
