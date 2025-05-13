@@ -1,18 +1,18 @@
 # Proyecto Tecsolve
 
-## Integrantes
+## 👥 Integrantes
 
-- **Meza Negreiros, Orlando** – Ingeniería Software
-- **Bedon Silva, Yefli** –  Ingeniería de Software 
-- **Sotelo Chavez, Guillermo** – Ingeniería Software
-- **Mariano Asencio, Erick** – Ingeniería de Sistemas 
-- **Valverde Montes, Stefano – Ingeniería de Sistemas  
+- **Meza Negreiros, Orlando** – Ingeniería – Ciclo VI  
+- **Bedon Silva, Yefli** – U22303932 – Ingeniería de Software – Ciclo VI  
+- **Sotelo Chavez, Guillermo** – U21223156 – Ingeniería – Ciclo  
+- **Mariano Asencio, Erick** – U21224667 – Ingeniería de Sistemas – Ciclo VI  
+- **Valverde Montes, Stefano** – U22228444 – Ingeniería de Sistemas – Ciclo VI  
 
 ---
 
-## Descripción del Problema
+## 🧩 Descripción del Problema
 
-**Tecsolve** es una empresa que se posiciona en el mercado como una opción rápida y de calidad para aquellos usuarios que desean comprar aparatos electrónicos.  
+**Tecsolve** es una empresa que se posiciona en el mercado como una opción rápida y de calidad para aquellos usuarios que desean comprar aparatos electrónicos.
 
 Actualmente, la empresa presenta las siguientes necesidades:
 
@@ -25,23 +25,30 @@ Actualmente, la empresa presenta las siguientes necesidades:
 
 ---
 
-## Tecnologías Utilizadas
+## 🎯 Objetivo del Proyecto
 
-- HTML5  
-- CSS3  
-- JavaScript  
-- Java  
-- MySQL  
+Desarrollar una solución web completa que permita:
 
----
-
-## Objetivo del Proyecto
-
-Desarrollar una solución web completa que permita gestionar el catálogo de productos, controlar inventario, realizar registros de clientes y facilitar el proceso de compra con integración de un sistema de facturación.
+- Gestionar el catálogo de productos  
+- Controlar inventario  
+- Registrar clientes  
+- Facilitar el proceso de compra  
+- Integrar un sistema de facturación  
 
 ---
 
-## Funcionalidades Esperadas
+## 🛠️ Tecnologías Utilizadas
+
+- **Lenguajes:** Java, HTML5, CSS3, JavaScript  
+- **Librerías:**  
+- **Backend:** Java  
+- **Frontend:** HTML5, CSS3, JavaScript  
+- **Base de Datos:** MySQL  
+- **Control de versiones:** Git / GitHub  
+
+---
+
+## 💡 Funcionalidades Esperadas
 
 - Registro y autenticación de usuarios  
 - Visualización de productos con sus detalles  
@@ -52,7 +59,7 @@ Desarrollar una solución web completa que permita gestionar el catálogo de pro
 
 ---
 
-## Instalación y Uso
+## 🚀 Instalación y Uso
 
 1. Clona el repositorio:  
    ```bash
