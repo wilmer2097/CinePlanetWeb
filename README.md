@@ -2,11 +2,11 @@
 
 ## 👥 Integrantes
 
-- **Meza Negreiros, Orlando** – Ingeniería – Ciclo VI  
-- **Bedon Silva, Yefli** – U22303932 – Ingeniería de Software – Ciclo VI  
-- **Sotelo Chavez, Guillermo** – U21223156 – Ingeniería – Ciclo  
-- **Mariano Asencio, Erick** – U21224667 – Ingeniería de Sistemas – Ciclo VI  
-- **Valverde Montes, Stefano** – U22228444 – Ingeniería de Sistemas – Ciclo VI  
+- **Meza Negreiros, Orlando**
+- **Bedon Silva, Yefli** – U22303932 
+- **Sotelo Chavez, Guillermo** – U21223156  
+- **Mariano Asencio, Erick** – U21224667   
+- **Valverde Montes, Stefano** – U22228444 
 
 ---
 
@@ -40,9 +40,9 @@ Desarrollar una solución web completa que permita:
 ## 🛠️ Tecnologías Utilizadas
 
 - **Lenguajes:** Java, HTML5, CSS3, JavaScript  
-- **Librerías:**  
-- **Backend:** Java  
-- **Frontend:** HTML5, CSS3, JavaScript  
+- **Librerías:** [React]  
+- **Backend:** Java, JSTL  
+- **Frontend:** CSS3, Bootstrap 4.6  
 - **Base de Datos:** MySQL  
 - **Control de versiones:** Git / GitHub  
 
