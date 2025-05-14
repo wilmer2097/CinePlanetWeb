@@ -89,6 +89,8 @@ public class controladorAdmin extends HttpServlet {
                 productoDao dao = new productoDao();
                 dao.eliminarProducto(id);
                 response.sendRedirect("controladorAdmin?accion=producto");
+            }else if (accion.equals("login")) {
+                request.getRequestDispatcher("./vistas/login.jsp").forward(request, response);
             }
         }
     }

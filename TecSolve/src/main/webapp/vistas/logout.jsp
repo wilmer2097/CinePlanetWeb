@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 12 may. 2025, 4:31:41 p. m.
+    Document   : logout
+    Created on : 14 may. 2025, 3:35:37 a. m.
     Author     : Guillermo
 --%>
 
@@ -12,7 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% response.sendRedirect(request.getContextPath()
-        + "/controladorAdmin?accion=login");%>
+        <%
+            session.invalidate();
+            response.sendRedirect("login.jsp");
+        %>
     </body>
 </html>
