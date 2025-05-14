@@ -3,10 +3,11 @@ package servicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import seguridad.authService;
 
 public class ConectaDB {
 
-       public static Connection getConnection() {
+    public static Connection getConnection() {
 
         //return cnx ;
         Connection cnx = null;
@@ -30,11 +31,9 @@ public class ConectaDB {
         return cnx;
     }
 
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException {
         Connection cnx = ConectaDB.getConnection();
-        
-        System.out.println(""+ cnx.getCatalog());
-    
+
     }
-    
+
 }

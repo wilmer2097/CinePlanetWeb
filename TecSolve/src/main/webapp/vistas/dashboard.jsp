@@ -56,6 +56,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<%=request.getContextPath()%>/controladorAdmin?accion=venta">Venta</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.jsp">Cerrar Sesion</a>
+                        </li>
                     </ul>
                 </div>
 
