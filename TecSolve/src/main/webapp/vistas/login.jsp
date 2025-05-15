@@ -130,7 +130,7 @@
             <p style="color:red;"><%= request.getAttribute("error")%></p>
             <% }%>
             <div class="register-text">
-                ¿No tienes cuenta? <a href="./vistas/registro.jsp">Regístrate</a>
+                ¿No tienes cuenta? <a href="${pageContext.request.contextPath}/vistas/registro.jsp">Regístrate</a>
             </div>
         </div>
 
