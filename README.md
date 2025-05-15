@@ -38,8 +38,6 @@ Actualmente, la empresa presenta las siguientes necesidades:
 - Actualización de protocolos de seguridad  
 
 
-## 🎯 Objetivo del Proyecto
-
 ---
 
 ## 🎯 Objetivo del Proyecto
