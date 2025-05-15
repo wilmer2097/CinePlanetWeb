@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -158,10 +159,11 @@
     <div class="logo">🔧 TechSolvers</div>
     <nav>
       <ul>
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.jsp">Inicio</a></li>
         <li><a href="#">Productos</a></li>
         <li><a href="#">Nosotros</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="${pageContext.request.contextPath}/vistas/contacto.jsp">Contacto</a></li>
+        <li><a href="${pageContext.request.contextPath}/vistas/logout.jsp">Cerrar Sesion</a></li>
       </ul>
     </nav>
   </header>

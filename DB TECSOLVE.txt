@@ -14,13 +14,13 @@ create table estadoVenta (
 
 create table usuario (
 	idUsuario int AUTO_INCREMENT,    
-    nombre varchar(20),
-    apellido varchar(20),
-    direccion varchar(50),
+    nombre varchar(100),
+    apellido varchar(100),
+    direccion varchar(500),
     telefono varchar(9),
     dni varchar(8),
     correo varchar(30),
-    clave varchar(32),
+    clave varchar(500),
     rol enum('admin','cliente'),
     fechaRegistro datetime,
     PRIMARY KEY(idUsuario)
@@ -30,7 +30,7 @@ create table producto(
 	idProducto int auto_increment,
     idCategoria int,
     nombreProducto varchar(20),
-    descripcion varchar (100),
+    descripcion varchar (1000),
     precio decimal(10,2),
     stock int,
     imagenUrl varchar(255),

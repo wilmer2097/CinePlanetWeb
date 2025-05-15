@@ -59,9 +59,6 @@ public class controladorLogin extends HttpServlet {
 
         usuarioDao dao = new usuarioDao();
         usuario usuario = dao.buscarEmail(email);
-        System.out.println("Contraseña ingresada: " + clave);
-        System.out.println("Hash de BD: " + usuario.getClave());
-        System.out.println("Verificación: " + authService.verificar(clave, usuario.getClave()));
         if (usuario != null && authService.verificar(clave, usuario.getClave())) {
             // Guardar datos en sesión
             HttpSession session = request.getSession();

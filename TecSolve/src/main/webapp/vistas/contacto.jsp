@@ -1,3 +1,10 @@
+<%-- 
+    Document   : contacto
+    Created on : 15 may. 2025, 2:07:33 a. m.
+    Author     : Guillermo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -178,10 +185,11 @@
     <div class="logo">🔧 TechSolvers</div>
     <nav>
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="productos.html">Productos</a></li>
+        <li><a href="${pageContext.request.contextPath}/vistas/index.jsp">Inicio</a></li>
+        <li><a href="#">Productos</a></li>
         <li><a href="#">Nosotros</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="${pageContext.request.contextPath}/vistas/contacto.jsp">Contacto</a></li>
+        <li><a href="${pageContext.request.contextPath}/vistas/logout.jsp">Cerrar Sesion</a></li>
       </ul>
     </nav>
   </header>
