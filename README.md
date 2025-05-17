@@ -182,9 +182,6 @@ I-->J-->K-->L
 - Módulo de delivery (futuro)  
 - Login con derivacion de usuario(admin y cliente)
 
-## 📌 Estado del Proyecto
-
-🟢 En desarrollo
 
 ## 🚀 Instalación y Uso
 
@@ -206,7 +203,7 @@ I-->J-->K-->L
 
 ### Categorías
 
-![NuestrasCategorias](./vistas/categorias.jpg)
+![NuestrasCategorias](./vistas/NuestrasCategorias.jpg)
 
 ### Productos
 
@@ -222,15 +219,15 @@ I-->J-->K-->L
 
 ### Dashboard
 
-![Dashboard](./vistas/dashboard.jpg)
+![Dashboard](./vistas/Dashboard.jpg)
 
 ### Panel de Edición de Productos
 
-![EditarProductos](./vistas/productos.jpg)
+![EditarProductos](./vistas/EditarProductos.jpg)
 
 ### Lista de Nuestros Usuarios
 
-![ListaUsuarios](./vistas/usuarios.jpg)
+![ListaUsuarios](./vistas/ListaUsuarios.jpg)
 
 
 ## Base de datos (Tablas)
