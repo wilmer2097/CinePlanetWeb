@@ -143,13 +143,17 @@
             function validarContraseñas() {
                 const password = document.getElementById("password").value;
                 const confirmar = document.getElementById("confirmar").value;
-
-                if (password === confirmar) {
-                    alert("Las contraseñas coinciden.");
-                    return true;
-                } else {
-                    alert("Las contraseñas no coinciden.");
+                if (password===null) {
+                    alert("La contraseña no puede estar vacia.");
                     return false;
+                } else {
+                    if (password === confirmar) {
+                        alert("Las contraseñas coinciden.");
+                        return true;
+                    } else {
+                        alert("Las contraseñas no coinciden.");
+                        return false;
+                    }
                 }
             }
         </script>
@@ -191,10 +195,12 @@
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
                         <input type="tel" id="telefono" name="telefono" placeholder="Ingrese su número de teléfono">
+                        <span id="errorTelefono" style="color:red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="dni">Número de DNI:</label>
                         <input type="text" id="dni" name="dni" placeholder="Ingrese su número de documento">
+                        <span id="errorDni" style="color:red;"></span>
                     </div>
 
                     <div class="form-group">
@@ -224,6 +230,29 @@
 
 
         </div>
+        <script>
+            document.getElementById('telefono').addEventListener('input', function () {
+                const valor = this.value;
+                const error = document.getElementById('errorTelefono');
 
+                const regex = /^9\d{8}$/;
+
+                if (!regex.test(valor)) {
+                    error.textContent = 'Debe empezar con 9 y tener 9 dígitos.';
+                } else {
+                    error.textContent = '';
+                }
+            });
+            document.getElementById('dni').addEventListener('input', function () {
+                const valor = this.value;
+                const error = document.getElementById('errorDni');
+
+                if (valor.length !== 8) {
+                    error.textContent = 'Debe tener exactamente 8 caracteres.';
+                } else {
+                    error.textContent = '';
+                }
+            });
+        </script>
     </body>
 </html>

@@ -54,14 +54,14 @@ public class controladorLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         String email = request.getParameter("correo");
+        email=email.toLowerCase();
         String clave = request.getParameter("clave");
 
         usuarioDao dao = new usuarioDao();
         usuario usuario = dao.buscarEmail(email);
-        System.out.println("Contraseña ingresada: " + clave);
-        System.out.println("Hash de BD: " + usuario.getClave());
-        System.out.println("Verificación: " + authService.verificar(clave, usuario.getClave()));
         if (usuario != null && authService.verificar(clave, usuario.getClave())) {
             // Guardar datos en sesión
             HttpSession session = request.getSession();
@@ -70,16 +70,18 @@ public class controladorLogin extends HttpServlet {
             if (null == usuario.getRol()) {
                 response.sendRedirect("login.jsp?error=Rol desconocido");
             } else // Redirección según rol
-            switch (usuario.getRol()) {
-                case "admin":
-                    response.sendRedirect("./vistas/dashboard.jsp");
-                    break;
-                case "cliente":
-                    response.sendRedirect("./vistas/index.jsp");
-                    break;
-                default:
-                    response.sendRedirect("login.jsp?error=Rol desconocido");
-                    break;
+            {
+                switch (usuario.getRol()) {
+                    case "admin":
+                        response.sendRedirect("./vistas/dashboard.jsp");
+                        break;
+                    case "cliente":
+                        response.sendRedirect("./vistas/index.jsp");
+                        break;
+                    default:
+                        response.sendRedirect("login.jsp?error=Rol desconocido");
+                        break;
+                }
             }
         } else {
             request.setAttribute("error", "Credenciales inválidas");

@@ -61,14 +61,16 @@ public class controladorUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String direccion = request.getParameter("direccion");
         String telefono = request.getParameter("telefono");
         String dni = request.getParameter("dni");
-        String correo = request.getParameter("correo");
-        String clave= request.getParameter("clave");
-        String rol = ("tecsolve".equals(request.getParameter("rol")) ? "admin" :"cliente");
+        String correo = request.getParameter("correo").toLowerCase();
+        String clave = request.getParameter("clave");
+        String rol = ("tecsolve".equals(request.getParameter("rol")) ? "admin" : "cliente");
 
         usuarioDao dao = new usuarioDao();
 

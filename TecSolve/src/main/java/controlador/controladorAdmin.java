@@ -89,7 +89,7 @@ public class controladorAdmin extends HttpServlet {
                 productoDao dao = new productoDao();
                 dao.eliminarProducto(id);
                 response.sendRedirect("controladorAdmin?accion=producto");
-            }else if (accion.equals("login")) {
+            } else if (accion.equals("login")) {
                 request.getRequestDispatcher("./vistas/login.jsp").forward(request, response);
             }
         }
@@ -121,6 +121,8 @@ public class controladorAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         String accion = request.getParameter("accion");
 
         String nombre = request.getParameter("nombreProducto");

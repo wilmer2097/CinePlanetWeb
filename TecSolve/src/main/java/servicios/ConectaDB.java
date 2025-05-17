@@ -12,8 +12,7 @@ public class ConectaDB {
         //return cnx ;
         Connection cnx = null;
 
-        String url = "jdbc:mysql://localhost:3306/tecsolve?useTimeZone=true&"
-                + "serverTimezone=UTC&autoReconnect=true";
+        String url = "jdbc:mysql://localhost:3306/tecsolve?useUnicode=true&characterEncoding=UTF-8&serverTimezone=America/Lima";
 
         String user = "root";
         String clave = "12345678";
@@ -33,6 +32,8 @@ public class ConectaDB {
 
     public static void main(String[] args) throws SQLException {
         Connection cnx = ConectaDB.getConnection();
+        
+        System.out.println(""+ cnx.getCatalog());
 
     }
 
