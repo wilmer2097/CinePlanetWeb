@@ -30,6 +30,48 @@ public class UserDAO {
         }
         return null;
     }
+    public User findById(int id) throws SQLException {
+        String sql = "SELECT usuario_id, nombre, email, password, telefono, fecha_reg "
+                   + "FROM usuario WHERE usuario_id = ?";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    User u = new User();
+                    u.setId(rs.getInt("usuario_id"));
+                    u.setNombre(rs.getString("nombre"));
+                    u.setEmail(rs.getString("email"));
+                    u.setPassword(rs.getString("password"));
+                    u.setTelefono(rs.getString("telefono"));
+                    u.setFechaReg(rs.getTimestamp("fecha_reg"));
+                    return u;
+                } else {
+                    return null;  // usuario no existe
+                }
+            }
+        }
+    }
+    public void update(User u) throws SQLException {
+        String sql = "UPDATE usuario "
+                   + "SET nombre = ?, email = ?, password = ?, telefono = ? "
+                   + "WHERE usuario_id = ?";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, u.getNombre());
+            ps.setString(2, u.getEmail());
+            ps.setString(3, u.getPassword());
+            ps.setString(4, u.getTelefono());
+            ps.setInt   (5, u.getId());
+
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new SQLException("No se actualizó ningún registro de usuario.");
+            }
+        }
+    }
+
 
     public User create(User user) throws SQLException {
         String sql = "INSERT INTO usuario (nombre, email, password, telefono) "
@@ -60,4 +102,5 @@ public class UserDAO {
                 "El correo '" + user.getEmail() + "' ya está registrado.", dup);
         }
     }
+
 }

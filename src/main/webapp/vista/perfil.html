@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineReserva - Mi Cuenta</title>
+    <link rel="stylesheet" href="../resources/perfil.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">CineReserva</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Cartelera</a>
+                <a href="#" class="nav-link">Próximos Estrenos</a>
+                <a href="#" class="nav-link">Cines</a>
+                <a href="#" class="nav-link">Promociones</a>
+            </div>
+            <div class="user-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar películas...">
+                </div>
+                <button class="btn btn-primary">Mi Cuenta</button>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <h1 class="page-title">Mi Cuenta</h1>
+        
+        <div class="profile-container">
+            <div class="sidebar">
+                <div class="profile-avatar">W</div>
+                <h2 class="user-name">wilmer</h2>
+                <p class="user-email">wilmer@gmail.com</p>
+                
+                <ul class="sidebar-menu">
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link active">Perfil</a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">Mis Reservas</a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">Preferencias</a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">Métodos de Pago</a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">Notificaciones</a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content-area">
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active">Perfil</div>
+                        <div class="tab">Reservas</div>
+                        <div class="tab">Estadísticas</div>
+                    </div>
+                    
+                    <div class="tab-content active">
+                        <div class="membership-card">
+                            <p class="membership-level">Nivel de Membresía</p>
+                            <h3 class="membership-name">CineFan Gold</h3>
+                            <p class="membership-points">700 / 1000 puntos para el siguiente nivel</p>
+                            <div class="points-bar">
+                                <div class="points-progress"></div>
+                            </div>
+                            <div class="points-labels">
+                                <span>0</span>
+                                <span>1000</span>
+                            </div>
+                            <p class="membeship-expires">Membresía válida hasta: 22 de Abril de 2026</p>
+                        </div>
+                        
+                        <h2 class="section-title">Información Personal</h2>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" id="nombre" class="form-control" value="Wilmer">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" class="form-control" value="wilmer@gmail.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="tel" id="telefono" class="form-control" value="+34 612 345 678">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fecha_reg" class="form-label">Fecha de Registro</label>
+                                    <input type="text" id="fecha_reg" class="form-control" value="15/08/2024" disabled>
+                                </div>
+                            </div>
+                            
+                            <div class="password-section">
+                                <h3 class="section-title">Cambiar Contraseña</h3>
+                                <div class="form-group">
+                                    <label for="current_password" class="form-label">Contraseña Actual</label>
+                                    <input type="password" id="current_password" class="form-control">
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="new_password" class="form-label">Nueva Contraseña</label>
+                                        <input type="password" id="new_password" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                                        <input type="password" id="confirm_password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-save">Guardar Cambios</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <h2 class="section-title">Mis Reservas</h2>
+                        
+                        <div class="reservation-card">
+                            <div class="movie-thumbnail">
+                                <img src="/api/placeholder/80/120" alt="Película">
+                            </div>
+                            <div class="reservation-details">
+                                <h3>Gladiator II</h3>
+                                <div class="reservation-info">
+                                    <span>Cine: Ubicacion1</span>
+                                    <span>Fecha: 25/04/2025</span>
+                                    <span>Hora: 19:30</span>
+                                    <span>Sala: 4</span>
+                                    <span>Asientos: F12, F13</span>
+                                </div>
+                            </div>
+                            <div class="reservation-actions">
+                                <button class="btn btn-primary btn-small">Ver Entradas</button>
+                                <button class="btn btn-small">Cancelar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="reservation-card">
+                            <div class="movie-thumbnail">
+                                <img src="/api/placeholder/80/120" alt="Película">
+                            </div>
+                            <div class="reservation-details">
+                                <h3>Dune: Parte 2</h3>
+                                <div class="reservation-info">
+                                    <span>Cine: Ubicacion2</span>
+                                    <span>Fecha: 18/04/2025</span>
+                                    <span>Hora: 21:45</span>
+                                    <span>Sala: IMAX</span>
+                                    <span>Asientos: H8, H9, H10</span>
+                                </div>
+                            </div>
+                            <div class="reservation-actions">
+                                <button class="btn btn-primary btn-small">Ver Entradas</button>
+                                <button class="btn btn-small" disabled>Finalizada</button>
+                            </div>
+                        </div>
+                        
+                        <div class="reservation-card">
+                            <div class="movie-thumbnail">
+                                <img src="/api/placeholder/80/120" alt="Película">
+                            </div>
+                            <div class="reservation-details">
+                                <h3>Inside Out 2</h3>
+                                <div class="reservation-info">
+                                    <span>Cine: Ubicacion3</span>
+                                    <span>Fecha: 10/04/2025</span>
+                                    <span>Hora: 17:15</span>
+                                    <span>Sala: 2</span>
+                                    <span>Asientos: C4, C5, C6, C7</span>
+                                </div>
+                            </div>
+                            <div class="reservation-actions">
+                                <button class="btn btn-primary btn-small">Ver Entradas</button>
+                                <button class="btn btn-small" disabled>Finalizada</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <h2 class="section-title">Estadísticas</h2>
+                        
+                        <div class="account-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Películas vistas</div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">Cines visitados</div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-number">28</div>
+                                <div class="stat-label">Entradas compradas</div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-number">700</div>
+                                <div class="stat-label">Puntos acumulados</div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="section-title">Películas Favoritas</h3>
+                        <!-- Aquí iría un gráfico o una lista de películas favoritas -->
+                        
+                        <h3 class="section-title">Actividad Reciente</h3>
+                        <!-- Aquí iría un historial de actividad -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">CineReserva</h3>
+                <p>Tu app para reservar entradas de cine de forma fácil y rápida.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Enlaces</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Sobre nosotros</a></li>
+                    <li class="footer-link"><a href="#">Términos y condiciones</a></li>
+                    <li class="footer-link"><a href="#">Política de privacidad</a></li>
+                    <li class="footer-link"><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Contacto</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Email</a></li>
+                    <li class="footer-link"><a href="#">Teléfono</a></li>
+                    <li class="footer-link"><a href="#">Soporte</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 CineReserva. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para las pestañas
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Desactivar todas las pestañas y contenido
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Activar la pestaña seleccionada y su contenido
+                tab.classList.add('active');
+                tabContents[index].classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

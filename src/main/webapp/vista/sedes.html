@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineReserva - Vistas Adicionales</title>
+    <link rel="stylesheet" href="sedes.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">CineReserva</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Cartelera</a>
+                <a href="#" class="nav-link active">Cines</a>
+                <a href="#" class="nav-link">Próximos Estrenos</a>
+                <a href="#" class="nav-link">Promociones</a>
+            </div>
+            <div class="user-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar películas...">
+                </div>
+                <button class="btn btn-primary">Mi Cuenta</button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- VISTA DE CINES -->
+    <main>
+        <h1 class="page-title">Nuestros Cines</h1>
+        
+        <div class="cinemas-container">
+            <div class="cinemas-list">
+                <div class="cinema-item active">
+                    <h3 class="cinema-name">ubicacion1</h3>
+                    <p class="cinema-address">Av. 123</p>
+                    <div class="cinema-details">
+                        <span>8 salas</span>
+                        <span>IMAX / 4DX</span>
+                    </div>
+                </div>
+                
+                <div class="cinema-item">
+                    <h3 class="cinema-name">ubicacion2</h3>
+                    <p class="cinema-address">Av. 123</p>
+                    <div class="cinema-details">
+                        <span>12 salas</span>
+                        <span>3D / IMAX</span>
+                    </div>
+                </div>
+                
+                <div class="cinema-item">
+                    <h3 class="cinema-name">ubicacion3</h3>
+                    <p class="cinema-address">Av. 123</p>
+                    <div class="cinema-details">
+                        <span>10 salas</span>
+                        <span>IMAX / 4DX</span>
+                    </div>
+                </div>
+                
+                <div class="cinema-item">
+                    <h3 class="cinema-name">ubicacion14</h3>
+                    <p class="cinema-address">Av. 123</p>
+                    <div class="cinema-details">
+                        <span>6 salas</span>
+                        <span>3D</span>
+                    </div>
+                </div>
+                
+                <div class="cinema-item">
+                    <h3 class="cinema-name">ubicacion15</h3>
+                    <p class="cinema-address">Av. 123</p>
+                    <div class="cinema-details">
+                        <span>9 salas</span>
+                        <span>IMAX / 3D</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <iframe alt="Mapa" class="map-placeholder" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456562.99438790034!2d-77.31744079740966!3d-12.026445026406154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c5f619ee3ec7%3A0x14206cb9cc452e4a!2sLima!5e1!3m2!1ses-419!2spe!4v1745305447753!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="map-pin"></div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- VISTA DE PROMOCIONES -->
+    <main style="display: none;">
+        <h1 class="page-title">Promociones y Descuentos</h1>
+        
+        <div class="promotions-grid">
+            <div class="promo-card">
+                <img src="/api/placeholder/400/180" alt="Promo" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Martes de Cine</h3>
+                    <p class="promo-description">Todos los martes, entradas a mitad de precio para cualquier película en cartelera.</p>
+                    <p class="promo-dates">Válido hasta: 31/12/2025</p>
+                    <div class="promo-code">MARTES50</div>
+                    <button class="btn btn-primary" style="width: 100%;">Reservar con Promo</button>
+                </div>
+            </div>
+            
+            <div class="promo-card">
+                <img src="/api/placeholder/400/180" alt="Promo" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Combo Familiar</h3>
+                    <p class="promo-description">4 entradas + 2 palomitas grandes + 4 refrescos a precio especial.</p>
+                    <p class="promo-dates">Válido hasta: 30/06/2025</p>
+                    <div class="promo-code">FAMILIA25</div>
+                    <button class="btn btn-primary" style="width: 100%;">Reservar con Promo</button>
+                </div>
+            </div>
+            
+            <div class="promo-card">
+                <img src="/api/placeholder/400/180" alt="Promo" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Estreno Premium</h3>
+                    <p class="promo-description">Asiste a estrenos exclusivos con copa de bienvenida y asiento Premium.</p>
+                    <p class="promo-dates">Válido hasta: 31/12/2025</p>
+                    <div class="promo-code">PREMIUM10</div>
+                    <button class="btn btn-primary" style="width: 100%;">Reservar con Promo</button>
+                </div>
+            </div>
+            
+            <div class="promo-card">
+                <img src="/api/placeholder/400/180" alt="Promo" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Cine y Cena</h3>
+                    <p class="promo-description">Entrada + Menú especial en restaurantes asociados con 15% de descuento.</p>
+                    <p class="promo-dates">Válido hasta: 31/05/2025</p>
+                    <div class="promo-code">CENACINE15</div>
+                    <button class="btn btn-primary" style="width: 100%;">Reservar con Promo</button>
+                </div>
+            </div>
+            
+            <div class="promo-card">
+                <img src="/api/placeholder/400/180" alt="Promo" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Cine Gourmet</h3>
+                    <p class="promo-description">Disfruta de una selección de tapas gourmet durante la proyección.</p>
+                    <p class="promo-dates">Válido hasta: 31/08/2025</p>
+                    <div class="promo-code">GOURMET20</div>
+                    <button class="btn btn-primary" style="width: 100%;">Reservar con Promo</button>
+                </div>
+            </div>
+            
+            <div class="promo-card">
+                <img src="/api/placeholder/400/180" alt="Promo" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Descuento Estudiante</h3>
+                    <p class="promo-description">20% de descuento en entradas presentando carnet de estudiante.</p>
+                    <p class="promo-dates">Válido hasta: 31/12/2025</p>
+                    <div class="promo-code">ESTUD20</div>
+                    <button class="btn btn-primary" style="width: 100%;">Reservar con Promo</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- VISTA DE MI CUENTA -->
+    <main style="display: none;">
+        <h1 class="page-title">Mi Cuenta</h1>
+        
+        <div class="account-container">
+            <div class="account-tabs">
+                <div class="account-tab active">Perfil</div>
+                <div class="account-tab">Reservas</div>
+                <div class="account-tab">Favoritos</div>
+                <div class="account-tab">Métodos de Pago</div>
+            </div>
+            
+            <div class="account-section">
+                <div class="profile-header">
+                    <div class="profile-avatar">JD</div>
+                    <div class="profile-info">
+                        <h3>Juan Domínguez</h3>
+                        <p>Usuario desde Abril 2025</p>
+                    </div>
+                </div>
+                
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-input" value="Juan" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" class="form-input" value="Domínguez" placeholder="Apellidos">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" value="juan.dominguez@example.com" placeholder="Email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" class="form-input" value="612345678" placeholder="Teléfono">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Contraseña actual</label>
+                        <input type="password" class="form-input" placeholder="Introduce tu contraseña actual">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nueva contraseña</label>
+                            <input type="password" class="form-input" placeholder="Nueva contraseña">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirmar contraseña</label>
+                            <input type="password" class="form-input" placeholder="Confirmar contraseña">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+                
+                <div class="booking-history">
+                    <h3 style="margin-bottom: 1rem;">Historial de Reservas Recientes</h3>
+                    
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <h4 class="booking-title">Dune: Parte 2</h4>
+                            <span class="booking-date">18 Abril, 2025 - 19:30</span>
+                        </div>
+                        <div class="booking-details">
+                            <span class="booking-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                                    <line x1="7" y1="2" x2="7" y2="22"></line>
+                                    <line x1="17" y1="2" x2="17" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="2" y1="7" x2="7" y2="7"></line>
+                                    <line x1="2" y1="17" x2="7" y2="17"></line>
+                                    <line x1="17" y1="17" x2="22" y2="17"></line>
+                                    <line x1="17" y1="7" x2="22" y2="7"></line>
+                                </svg>
+                                CineReserva Gran Vía
+                            </span>
+                            <span class="booking-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+                                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                                </svg>
+                                Sala 4
+                            </span>
+                            <span class="booking-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"></path>
+                                    <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"></path>
+                                </svg>
+                                Asientos: F12, F13
+                            </span>
+                        </div>
+                        <div class="booking-actions">
+                            <button class="btn btn-secondary">Ver Ticket</button>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <h4 class="booking-title">Godzilla x Kong</h4>
+                            <span class="booking-date">10 Abril, 2025 - 21:00</span>
+                        </div>
+                        <div class="booking-details">
+                            <span class="booking-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                                    <line x1="7" y1="2" x2="7" y2="22"></line>
+                                    <line x1="17" y1="2" x2="17" y2="22"></line>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="2" y1="7" x2="7" y2="7"></line>
+                                    <line x1="2" y1="17" x2="7" y2="17"></line>
+                                    <line x1="17" y1="17" x2="22" y2="17"></line>
+                                    <line x1="17" y1="7" x2="22" y2="7"></line>
+                                </svg>
+                                CineReserva Diagonal
+                            </span>
+                            <span class="booking-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+                                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                                </svg>
+                                Sala IMAX
+                            </span>
+                            <span class="booking-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"></path>
+                                    <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"></path>
+                                </svg>
+                                Asientos: H5, H6, H7
+                            </span>
+                        </div>
+                        <div class="booking-actions">
+                            <button class="btn btn-secondary">Ver Ticket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">CineReserva</h3>
+                <p>Tu app para reservar entradas de cine de forma fácil y rápida.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Enlaces</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Sobre nosotros</a></li>
+                </ul>
+            </div>
+            </div>
+    </footer>
+</body>
+</html>

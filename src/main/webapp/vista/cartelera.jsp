@@ -25,7 +25,7 @@
         <form action="${pageContext.request.contextPath}/buscar" method="get" class="search-box">
           <input type="text" name="q" placeholder="Buscar películas…" />
         </form>
-        <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Mi Cuenta</a>
+        <a href="${pageContext.request.contextPath}/profile" class="btn btn-primary">Mi Cuenta</a>
       </div>
     </nav>
   </header>

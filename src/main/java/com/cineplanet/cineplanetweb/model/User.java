@@ -2,6 +2,7 @@
 package com.cineplanet.cineplanetweb.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -69,4 +70,8 @@ public class User implements Serializable {
                ", email='" + email + '\'' +
                '}';
     }
+
+    private java.sql.Timestamp fechaReg;
+    public java.sql.Timestamp getFechaReg() { return fechaReg; }
+    public void setFechaReg(java.sql.Timestamp ts) { this.fechaReg = ts; }
 }

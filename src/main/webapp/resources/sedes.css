@@ -1,0 +1,464 @@
+
+:root {
+    --primary-color: #0d1f40;
+    --secondary-color: #221f1f;
+    --text-color: #ffffff;
+    --background-dark: #000000;
+    --background-light: #141414;
+    --card-bg: #1a1a1a;
+    --input-bg: #333;
+    --border-color: #444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-dark);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    width: 200px;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #555;
+    color: white;
+}
+
+main {
+    padding: 2rem;
+    min-height: calc(100vh - 200px);
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Estilos para la vista de Cines */
+.cinemas-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.cinemas-list {
+    flex: 1;
+    max-width: 300px;
+}
+
+.cinema-item {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cinema-item:hover, .cinema-item.active {
+    background-color: #333;
+}
+
+.cinema-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cinema-address {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.cinema-details {
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+.map-container {
+    flex: 2;
+    height: 500px;
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.map-pin {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin-left: -20px;
+    margin-top: -40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.map-pin:after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+    top: 8px;
+    left: 8px;
+}
+
+/* Estilos para la vista de Promociones */
+.promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.promo-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+}
+
+.promo-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.promo-content {
+    padding: 1rem;
+}
+
+.promo-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.promo-description {
+    margin-bottom: 1rem;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.promo-dates {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+}
+
+.promo-code {
+    background-color: #333;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px dashed #555;
+}
+
+/* Estilos para la vista de Mi Cuenta */
+.account-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.account-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+}
+
+.account-tab {
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.account-tab:hover {
+    background-color: #222;
+}
+
+.account-tab.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.account-section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.profile-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.profile-info p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.booking-history {
+    margin-top: 2rem;
+}
+
+.booking-card {
+    background-color: #222;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.booking-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.booking-date {
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+.booking-details {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.booking-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.booking-actions {
+    margin-top: 0.8rem;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    padding: 2rem 1rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-link {
+    margin-bottom: 0.5rem;
+}
+
+.footer-link a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.footer-link a:hover {
+    color: white;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #333;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .cinemas-container {
+        flex-direction: column;
+    }
+
+    .cinemas-list {
+        max-width: 100%;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
