@@ -1,7 +1,0 @@
-/target/
-/.idea/
-/nbproject/private/
-/*.log
-*.class
-*.iml
-.DS_Store

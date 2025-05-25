@@ -9,6 +9,7 @@ public class Sugerencia {
     }
     
     
+    
     public Sugerencia(String nombre, String email, String telefono, String categoria, String sugerencia) {
         this.nombre = nombre;
         this.email = email;
@@ -56,6 +57,7 @@ public class Sugerencia {
     public void setSugerencia(String sugerencia) {
         this.sugerencia = sugerencia;
     }
+
     
 }
 

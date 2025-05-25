@@ -5,12 +5,13 @@ import com.cineplanet.cineplanetweb.controller.Conexion;
 import com.cineplanet.cineplanetweb.model.Reclamacion;
 import java.sql.*;
 
-public class ReclamacionDAO {
 
+public class ReclamacionDAO {
     public void insertarReclamacion(Reclamacion r) {
         String sql = "INSERT INTO reclamaciones (nombre, dni, telefono, email, direccion, cine, fecha_incidente, tipo, detalle, pedido, acepta_terminos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, r.getNombre());
             ps.setString(2, r.getDni());
@@ -30,3 +31,4 @@ public class ReclamacionDAO {
         }
     }
 }
+

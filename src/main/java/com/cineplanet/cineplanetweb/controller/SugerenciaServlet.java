@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.cineplanet.cineplanetweb.controller;
 
 import com.cineplanet.cineplanetweb.dao.SugerenciaDAO;
@@ -5,18 +9,30 @@ import com.cineplanet.cineplanetweb.model.Sugerencia;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "SugerenciaServlet", urlPatterns = {"/SugerenciaServlet"})
+/**
+ *
+ * @author JOE
+ */
 public class SugerenciaServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -29,46 +45,51 @@ public class SugerenciaServlet extends HttpServlet {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        
-        // Configurar codificación UTF-8
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        try {
-            // Crear objeto Sugerencia con los datos del formulario
-            Sugerencia sugerencia = new Sugerencia();
-            sugerencia.setNombre(request.getParameter("nombre"));
-            sugerencia.setEmail(request.getParameter("email"));
-            sugerencia.setTelefono(request.getParameter("telefono"));
-            sugerencia.setCategoria(request.getParameter("categoria"));
-            sugerencia.setSugerencia(request.getParameter("sugerencia"));
-            
-            // Guardar en base de datos
-            SugerenciaDAO dao = new SugerenciaDAO();
-            boolean exito = dao.guardarSugerencia(sugerencia);
-            
-            // Redireccionar con mensaje de resultado
-            String mensaje = exito ? "sugerencia-ok" : "sugerencia-error";
-            response.sendRedirect(request.getContextPath() + "/ver-anexos?mensaje=" + mensaje);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            // En caso de error, redireccionar con mensaje de error
-            response.sendRedirect(request.getContextPath() + "/ver-anexos?mensaje=sugerencia-error");
-        }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombre = request.getParameter("nombre");
+        String email = request.getParameter("email");
+        String telefono = request.getParameter("telefono");
+        String categoria = request.getParameter("categoria");
+        String sugerencia = request.getParameter("sugerencia");
+
+        SugerenciaDAO dao = new SugerenciaDAO();
+        dao.insertarSugerencia(new Sugerencia(nombre, email, telefono, categoria, sugerencia));
+
+        response.sendRedirect("ver-anexos.jsp?mensaje=sugerencia_enviada");
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
-        return "Servlet para manejar sugerencias de usuarios";
-    }
+        return "Short description";
+    }// </editor-fold>
+
 }

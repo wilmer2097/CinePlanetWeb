@@ -1,6 +1,7 @@
 
 package com.cineplanet.cineplanetweb.model;
 
+
 public class Reclamacion {
     private String nombre, dni, telefono, email, direccion, cine, fechaIncidente, tipo, detalle, pedido;
     private boolean aceptaTerminos;
@@ -113,7 +114,7 @@ public class Reclamacion {
     public void setAceptaTerminos(boolean aceptaTerminos) {
         this.aceptaTerminos = aceptaTerminos;
     }
-    
+
     
 }
 

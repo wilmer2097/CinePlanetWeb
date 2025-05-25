@@ -31,7 +31,7 @@
       </div>
     </nav>
   </header>
-      
+    
   <main>
     <div class="page-header">
       <h1 class="page-title">Ver Anexos</h1>
@@ -46,7 +46,7 @@
           <p class="form-subtitle">Ayúdanos a mejorar tu experiencia en CinePlanet</p>
         </div>
         
-        <form class="suggestion-form" action="${pageContext.request.contextPath}/SugerenciaServlet" method="post">
+        <form class="suggestion-form" action="${pageContext.request.contextPath}/procesar-sugerencia" method="post">
           <div class="form-group">
             <label for="nombre-sugerencia" class="form-label">Nombre completo</label>
             <input type="text" id="nombre-sugerencia" name="nombre" class="form-input" required>
