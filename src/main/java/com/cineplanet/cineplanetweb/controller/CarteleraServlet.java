@@ -20,7 +20,7 @@ public class CarteleraServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        log("🛠 doGet /cartelera – fetching funcionesHoy desde DAO");
+        log("doGet /cartelera – fetching funcionesHoy desde DAO");
 
         try {
             List<FuncionHoy> funcionesHoy = dao.obtenerFuncionesHoy();
