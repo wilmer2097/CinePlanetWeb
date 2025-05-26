@@ -6,20 +6,31 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
+
+    // Credenciales y configuración de MySQL
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
     private static final String DATABASE = "cineplanet_web";
-    private static final String URL      =
-        "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false&serverTimezone=UTC";
+    private static final String HOST     = "localhost";
+    private static final int    PORT     = 3306;
 
+    // URL completa del JDBC (ajustada a MySQL moderno)
+    private static final String URL =
+        "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE +
+        "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+
+    // Carga del driver al inicio de la clase
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Driver MySQL cargado correctamente.");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Driver JDBC no encontrado", e);
+            System.err.println("Error: Driver JDBC no encontrado.");
+            throw new RuntimeException(e);
         }
     }
 
+    // Método público para obtener la conexión
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }

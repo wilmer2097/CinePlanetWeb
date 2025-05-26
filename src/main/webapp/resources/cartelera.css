@@ -20,6 +20,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --danger-color: #dc3545;
     --border-color: #333;
 }
+/* HERO */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  min-height: 300px;
+}
+.hero-section .overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+/* EFECTO HOVER EN TARJETAS */
+.hover-shadow {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
 
 * {
     margin: 0;
