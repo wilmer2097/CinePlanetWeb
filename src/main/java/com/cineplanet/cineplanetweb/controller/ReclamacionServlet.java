@@ -1,101 +1,66 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+// src/main/java/com/cineplanet/cineplanetweb/controller/ReclamacionServlet.java
 package com.cineplanet.cineplanetweb.controller;
 
 import com.cineplanet.cineplanetweb.dao.ReclamacionDAO;
 import com.cineplanet.cineplanetweb.model.Reclamacion;
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author JOE
- */
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
+@WebServlet(name = "ReclamacionServlet", urlPatterns = {"/ver-anexos", "/procesar-reclamacion"})
 public class ReclamacionServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    private ReclamacionDAO dao;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        dao = new ReclamacionDAO();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ReclamacionServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ReclamacionServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        // Forward al JSP que contiene ambos formularios
+        req.getRequestDispatcher("/vista/ver-anexos.jsp")
+           .forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // Parámetros del formulario de reclamación
+        String nombre   = req.getParameter("nombre");
+        String dni      = req.getParameter("dni");
+        String telefono = req.getParameter("telefono");
+        String email    = req.getParameter("email");
+        String direccion= req.getParameter("direccion");
+        String cine     = req.getParameter("cine");
+        LocalDate fecha = LocalDate.parse(req.getParameter("fecha"));  // yyyy-MM-dd
+        String tipo     = req.getParameter("tipo");
+        String detalle  = req.getParameter("detalle");
+        String pedido   = req.getParameter("pedido");
+        boolean acepta  = req.getParameter("acepta-terminos") != null;
+
+        String resultado;
+        try {
+            Reclamacion r = new Reclamacion(
+                nombre, dni, telefono, email,
+                direccion, cine, fecha,
+                tipo, detalle, pedido, acepta
+            );
+            dao.create(r);
+            resultado = "ok";
+        } catch (SQLException ex) {
+            log("Error procesando reclamación", ex);
+            resultado = "error";
         }
+
+        // Redirect con parámetro de resultado
+        resp.sendRedirect(req.getContextPath() + "/ver-anexos?mensaje=" + resultado);
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nombre = request.getParameter("nombre");
-        String dni = request.getParameter("dni");
-        String telefono = request.getParameter("telefono");
-        String email = request.getParameter("email");
-        String direccion = request.getParameter("direccion");
-        String cine = request.getParameter("cine");
-        String fecha = request.getParameter("fecha");
-        String tipo = request.getParameter("tipo");
-        String detalle = request.getParameter("detalle");
-        String pedido = request.getParameter("pedido");
-        boolean acepta = request.getParameter("acepta-terminos") != null;
-
-        ReclamacionDAO dao = new ReclamacionDAO();
-        dao.insertarReclamacion(new Reclamacion(nombre, dni, telefono, email, direccion, cine, fecha, tipo, detalle, pedido, acepta));
-
-        response.sendRedirect("ver-anexos.jsp?mensaje=reclamacion_enviada");
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
