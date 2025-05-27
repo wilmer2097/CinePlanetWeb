@@ -132,6 +132,16 @@
             .btn-reports:hover {
                 background: #2980b9;
             }
+            /* Para los títulos de los modales */
+            .modal-title {
+                color: black !important;
+            }
+
+            /* Para las etiquetas label dentro de los modales */
+            .modal-body label.form-label {
+                color: black !important;
+            }
+
         </style>
     </head>
     <body>
@@ -314,6 +324,116 @@
                                         </div>
                                     </div>
 
+                                    <!-- Modal Gestionar Funciones -->
+                                    <div class="modal fade" id="modalReservas" tabindex="-1" aria-labelledby="ModalGestionarLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-superxl">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ModalGestionarLabel">Gestionar Funciones</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <table class="table table-bordered table-striped table-hover">
+                                                        <thead class="table-dark">
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Sala</th>
+                                                                <th>Película</th>
+                                                                <th>Fecha y Hora</th>
+                                                                <th>Idioma</th>
+                                                                <th>Precio Base</th>
+                                                                <th>Acciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>3</td>
+                                                                <td>7</td>
+                                                                <td>2025-06-01 20:00</td>
+                                                                <td>SUB</td>
+                                                                <td>S/ 15.00</td>
+                                                                <td>
+                                                                    <button class="btn btn-warning btn-sm">Editar</button>
+                                                                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>2</td>
+                                                                <td>5</td>
+                                                                <td>2025-06-01 22:30</td>
+                                                                <td>DOB</td>
+                                                                <td>S/ 18.00</td>
+                                                                <td>
+                                                                    <button class="btn btn-warning btn-sm">Editar</button>
+                                                                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Puedes duplicar más filas de ejemplo si deseas -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal Nueva funcion-->
+                                    <div class="modal fade" id="modalReportes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="formCrearFuncion">
+                                                        <div class="mb-3">
+                                                            <label for="sala_id" class="form-label">Sala ID</label>
+                                                            <input type="number" class="form-control" id="sala_id" name="sala_id" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="pelicula_id" class="form-label">Película ID</label>
+                                                            <input type="number" class="form-control" id="pelicula_id" name="pelicula_id" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="fecha_hora" class="form-label">Fecha y Hora</label>
+                                                            <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="idioma" class="form-label">Idioma</label>
+                                                            <select class="form-select" id="idioma" name="idioma">
+                                                                <option value="SUB">SUB</option>
+                                                                <option value="DOB">DOB</option>
+                                                                <option value="ESP">ESP</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="precio_base" class="form-label">Precio Base (S/)</label>
+                                                            <input type="number" step="0.01" class="form-control" id="precio_base" name="precio_base" required>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Promociones -->
                                     <div class="management-card">
                                         <div class="card-header">
@@ -367,139 +487,139 @@
             <!-- Modal Ejemplo para peliculas-->
             <!-- Modal: Ver Películas -->
             <p style="color:red">
-  Películas cargadas: ${fn:length(peliculas)}
-</p>
-<!-- Modal: Ver Películas -->
-<div class="modal fade" id="modalPeliculas" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title">Películas Registradas</h5></div>
-      <div class="modal-body">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr><th>Título</th><th>Duración</th><th>Clasificación</th><th>Acciones</th></tr>
-          </thead>
-          <tbody>
-            <c:forEach var="p" items="${peliculas}">
-              <tr>
-                <td>${p.titulo}</td>
-                <td>${p.duracionMin} min</td>
-                <td>${p.clasificacion}</td>
-                <td>
-                  <!-- Botón Eliminar -->
-                  <form method="post" action="${pageContext.request.contextPath}/perfil" style="display:inline">
-                    <input type="hidden" name="accion" value="eliminar" />
-                    <input type="hidden" name="id" value="${p.id}" />
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                  </form>
-
-                  <!-- Botón Editar -->
-                  <button class="btn btn-warning btn-sm"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalEditarPeliculas${p.id}">
-                    Editar
-                  </button>
-                </td>
-              </tr>
-            </c:forEach>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-              <!-- Modal de edición de película -->
-<c:forEach var="p" items="${peliculas}">
-  <div class="modal fade" id="modalEditarPeliculas${p.id}" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form action="${pageContext.request.contextPath}/perfil" method="post">
-          <input type="hidden" name="accion" value="editar"/>
-          <input type="hidden" name="id" value="${p.id}"/>
-
-          <div class="modal-header">
-            <h5 class="modal-title">Editar Película: ${p.titulo}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-
-          <div class="modal-body">
-            <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" value="${p.titulo}" required/></div>
-            <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" value="${p.duracionMin}" required/></div>
-            <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control">${p.sinopsis}</textarea></div>
-            <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control" value="${p.clasificacion}"/></div>
-            <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control" value="${p.estreno}"/></div>
-            <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control" value="${p.imgUrl}"/></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
-            <button class="btn btn-success" type="submit">Guardar Cambios</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</c:forEach>
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-            
-            <!-- Modal: Agregar Película -->
-            <div class="modal fade" id="modalAgregarPeliculas" tabindex="-1">
-                <div class="modal-dialog">
+                Películas cargadas: ${fn:length(peliculas)}
+            </p>
+            <!-- Modal: Ver Películas -->
+            <div class="modal fade" id="modalPeliculas" tabindex="-1">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <form action="${pageContext.request.contextPath}/perfil" method="post">
-                            <div class="modal-header"><h5 class="modal-title">Agregar Nueva Película</h5></div>
-                            <div class="modal-body">
-                                <input type="hidden" name="accion" value="agregar"/>
-                                <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" required/></div>
-                                <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" required/></div>
-                                <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control"></textarea></div>
-                                <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control"/></div>
-                                <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control"/></div>
-                                <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control"/></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button class="btn btn-primary" type="submit">Guardar</button>
-                            </div>
-                        </form>
+                        <div class="modal-header"><h5 class="modal-title">Películas Registradas</h5></div>
+                        <div class="modal-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr><th>Título</th><th>Duración</th><th>Clasificación</th><th>Acciones</th></tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="p" items="${peliculas}">
+                                        <tr>
+                                            <td>${p.titulo}</td>
+                                            <td>${p.duracionMin} min</td>
+                                            <td>${p.clasificacion}</td>
+                                            <td>
+                                                <!-- Botón Eliminar -->
+                                                <form method="post" action="${pageContext.request.contextPath}/perfil" style="display:inline">
+                                                    <input type="hidden" name="accion" value="eliminar" />
+                                                    <input type="hidden" name="id" value="${p.id}" />
+                                                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                                                </form>
+
+                                                <!-- Botón Editar -->
+                                                <button class="btn btn-warning btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalEditarPeliculas${p.id}">
+                                                    Editar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Modal de edición de película -->
+            <c:forEach var="p" items="${peliculas}">
+                <div class="modal fade" id="modalEditarPeliculas${p.id}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="${pageContext.request.contextPath}/perfil" method="post">
+                                <input type="hidden" name="accion" value="editar"/>
+                                <input type="hidden" name="id" value="${p.id}"/>
 
-        </main>
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Editar Película: ${p.titulo}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
 
-        <footer>
-            <div class="footer-content">
-                <!-- Pie de página igual que antes -->
-            </div>
-        </footer>
+                                <div class="modal-body">
+                                    <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" value="${p.titulo}" required/></div>
+                                    <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" value="${p.duracionMin}" required/></div>
+                                    <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control">${p.sinopsis}</textarea></div>
+                                    <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control" value="${p.clasificacion}"/></div>
+                                    <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control" value="${p.estreno}"/></div>
+                                    <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control" value="${p.imgUrl}"/></div>
+                                </div>
 
-        <script>
-            // Script para las pestañas
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+                                    <button class="btn btn-success" type="submit">Guardar Cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
 
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    tab.classList.add('active');
-                    tabContents[index].classList.add('active');
-                });
-            });
-        </script>
-        <!-- Bootstrap Bundle JS -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    </body>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Modal: Agregar Película -->
+<div class="modal fade" id="modalAgregarPeliculas" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="${pageContext.request.contextPath}/perfil" method="post">
+                <div class="modal-header"><h5 class="modal-title">Agregar Nueva Película</h5></div>
+                <div class="modal-body">
+                    <input type="hidden" name="accion" value="agregar"/>
+                    <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" required/></div>
+                    <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" required/></div>
+                    <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control"></textarea></div>
+                    <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control"/></div>
+                    <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control"/></div>
+                    <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control"/></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <!-- Pie de página igual que antes -->
+    </div>
+</footer>
+
+<script>
+    // Script para las pestañas
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            tabContents[index].classList.add('active');
+        });
+    });
+</script>
+<!-- Bootstrap Bundle JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+crossorigin="anonymous"></script>
+</body>
 </html>
