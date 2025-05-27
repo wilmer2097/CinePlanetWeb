@@ -242,5 +242,30 @@ SELECT s.sala_id,
            FROM complejo
           WHERE nombre = v.complejo
        );
+       
+insert into rol(nombre) VALUES(
+'USUARIO');
+insert into usuario_rol(usuario_id, rol_id) VALUES(
+1,1);
+select * from usuario_rol;
+
+CREATE TABLE rol (
+  rol_id    INT AUTO_INCREMENT PRIMARY KEY,
+  nombre    VARCHAR(50) NOT NULL UNIQUE  -- p.ej. 'ADMIN', 'CAJERO', 'USUARIO'
+);
+
+
+CREATE TABLE usuario_rol (
+  usuario_id INT NOT NULL,
+  rol_id     INT NOT NULL,
+  PRIMARY KEY (usuario_id, rol_id),
+  CONSTRAINT fk_ur_usuario FOREIGN KEY (usuario_id)
+    REFERENCES usuario(usuario_id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_ur_rol FOREIGN KEY (rol_id)
+    REFERENCES rol(rol_id)
+    ON DELETE CASCADE
+);
+
 
 

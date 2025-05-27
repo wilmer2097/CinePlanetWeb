@@ -10,6 +10,125 @@
     <title>CineReserva - Mi Cuenta</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/perfil.css" />
+    <style>
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .management-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .management-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .crud-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-manage {
+            background: #2c3e50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-manage:hover {
+            background: #34495e;
+        }
+        
+        .btn-new {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-new:hover {
+            background: #45a049;
+        }
+        
+        .btn-special {
+            background: #6c7b7f;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-special:hover {
+            background: #5a6b70;
+        }
+        
+        .btn-reports {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-reports:hover {
+            background: #2980b9;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -58,8 +177,10 @@
             <div class="tab active">Perfil</div>
             <div class="tab">Reservas</div>
             <div class="tab">Estadísticas</div>
+            <div class="tab">Gestión</div>
           </div>
 
+          <!-- Tab Content: Perfil -->
           <div class="tab-content active">
             <h2 class="section-title">Información Personal</h2>
             <form action="${pageContext.request.contextPath}/profile" method="post">
@@ -115,13 +236,119 @@
               <button type="submit" class="btn-save">Guardar Cambios</button>
             </form>
           </div>
-                    
-                    <!-- Aquí irían los otros tab-contents de Reservas y Estadísticas -->
-                    
+
+          <!-- Tab Content: Reservas -->
+          <div class="tab-content">
+            <h2 class="section-title">Mis Reservas</h2>
+            <p>Aquí se mostrarán las reservas del usuario...</p>
+          </div>
+
+          <!-- Tab Content: Estadísticas -->
+          <div class="tab-content">
+            <h2 class="section-title">Estadísticas</h2>
+            <p>Aquí se mostrarán las estadísticas del usuario...</p>
+          </div>
+
+          <!-- Tab Content: Gestión -->
+          <div class="tab-content">
+            <h2 class="section-title">Gestión de Contenido</h2>
+            
+            <div class="management-grid">
+              <!-- Películas -->
+              <div class="management-card">
+                <div class="card-header">
+                  <h3 class="card-title">Películas</h3>
+                  <span class="crud-badge">CRUD</span>
                 </div>
+                <p class="card-description">
+                  Administrar catálogo de películas, géneros y clasificaciones
+                </p>
+                <div class="card-actions">
+                  <a href="${pageContext.request.contextPath}/admin/peliculas" class="btn-manage">Gestionar</a>
+                  <a href="${pageContext.request.contextPath}/admin/peliculas/nueva" class="btn-new">Nueva Película</a>
+                </div>
+              </div>
+
+              <!-- Cines y Salas -->
+              <div class="management-card">
+                <div class="card-header">
+                  <h3 class="card-title">Cines y Salas</h3>
+                  <span class="crud-badge">CRUD</span>
+                </div>
+                <p class="card-description">
+                  Administrar ubicaciones, salas y configuraciones de asientos
+                </p>
+                <div class="card-actions">
+                  <a href="${pageContext.request.contextPath}/admin/cines" class="btn-manage">Gestionar</a>
+                  <a href="${pageContext.request.contextPath}/admin/salas" class="btn-special">Salas</a>
+                </div>
+              </div>
+
+              <!-- Horarios y Funciones -->
+              <div class="management-card">
+                <div class="card-header">
+                  <h3 class="card-title">Horarios y Funciones</h3>
+                  <span class="crud-badge">CRUD</span>
+                </div>
+                <p class="card-description">
+                  Programar funciones, horarios y precios especiales
+                </p>
+                <div class="card-actions">
+                  <a href="${pageContext.request.contextPath}/admin/funciones" class="btn-manage">Gestionar</a>
+                  <a href="${pageContext.request.contextPath}/admin/funciones/nueva" class="btn-new">Nueva Función</a>
+                </div>
+              </div>
+
+              <!-- Promociones -->
+              <div class="management-card">
+                <div class="card-header">
+                  <h3 class="card-title">Promociones</h3>
+                  <span class="crud-badge">CRUD</span>
+                </div>
+                <p class="card-description">
+                  Crear y administrar descuentos, ofertas y promociones especiales
+                </p>
+                <div class="card-actions">
+                  <a href="${pageContext.request.contextPath}/admin/promociones" class="btn-manage">Gestionar</a>
+                  <a href="${pageContext.request.contextPath}/admin/promociones/nueva" class="btn-new">Nueva Promoción</a>
+                </div>
+              </div>
+
+              <!-- Usuarios -->
+              <div class="management-card">
+                <div class="card-header">
+                  <h3 class="card-title">Usuarios</h3>
+                  <span class="crud-badge">CRUD</span>
+                </div>
+                <p class="card-description">
+                  Administrar cuentas de usuarios y permisos del sistema
+                </p>
+                <div class="card-actions">
+                  <a href="${pageContext.request.contextPath}/admin/usuarios" class="btn-manage">Gestionar</a>
+                  <a href="${pageContext.request.contextPath}/admin/roles" class="btn-special">Roles</a>
+                </div>
+              </div>
+
+              <!-- Reservas -->
+              <div class="management-card">
+                <div class="card-header">
+                  <h3 class="card-title">Reservas</h3>
+                  <span class="crud-badge">CRUD</span>
+                </div>
+                <p class="card-description">
+                  Administrar reservas, cancelaciones y reembolsos
+                </p>
+                <div class="card-actions">
+                  <a href="${pageContext.request.contextPath}/admin/reservas" class="btn-manage">Gestionar</a>
+                  <a href="${pageContext.request.contextPath}/admin/reservas/reportes" class="btn-reports">Reportes</a>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
+  </main>
     
     <footer>
         <div class="footer-content">
