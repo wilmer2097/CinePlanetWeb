@@ -247,7 +247,7 @@ insert into rol(nombre) VALUES(
 'USUARIO');
 insert into usuario_rol(usuario_id, rol_id) VALUES(
 1,1);
-select * from usuario_rol;
+select * from usuario;
 
 CREATE TABLE rol (
   rol_id    INT AUTO_INCREMENT PRIMARY KEY,

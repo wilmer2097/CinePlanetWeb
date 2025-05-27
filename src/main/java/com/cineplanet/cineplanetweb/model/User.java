@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -74,4 +76,10 @@ public class User implements Serializable {
     private java.sql.Timestamp fechaReg;
     public java.sql.Timestamp getFechaReg() { return fechaReg; }
     public void setFechaReg(java.sql.Timestamp ts) { this.fechaReg = ts; }
+    
+    private List<Role> roles = new ArrayList<>();
+
+    public List<Role> getRoles() { return roles; }
+    public void setRoles(List<Role> roles) { this.roles = roles; }
+    public void addRole(Role r) { this.roles.add(r); }
 }

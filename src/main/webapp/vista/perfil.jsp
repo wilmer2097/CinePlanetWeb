@@ -8,7 +8,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CineReserva - Mi Cuenta</title>
+<<<<<<< HEAD
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+=======
+        <!-- Bootstrap 5 CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet" crossorigin="anonymous"/>
+>>>>>>> 47959a69808d8ed373ce0f6e50b4c58bc589a3b2
         <link rel="stylesheet"
               href="${pageContext.request.contextPath}/resources/perfil.css" />
         <style>
@@ -129,6 +136,7 @@
             .btn-reports:hover {
                 background: #2980b9;
             }
+<<<<<<< HEAD
             .modal-superxl {
                 max-width: 95% !important; /* o 90% si quieres un poco más pequeño */
             }
@@ -136,6 +144,20 @@
         </style>
     </head>
     <body>
+=======
+        </style>
+    </head>
+    <body>
+        <!-- 1) Calcular isAdmin y exponer 'usuario' en página -->
+        <c:set var="usuario" value="${sessionScope.user}" />
+        <c:set var="isAdmin"  value="false" />
+        <c:forEach var="r" items="${usuario.roles}">
+            <c:if test="${r.nombre == 'ADMIN'}">
+                <c:set var="isAdmin" value="true" />
+            </c:if>
+        </c:forEach>
+
+>>>>>>> 47959a69808d8ed373ce0f6e50b4c58bc589a3b2
         <header>
             <nav class="navbar">
                 <div class="logo">
@@ -182,7 +204,13 @@
                             <div class="tab active">Perfil</div>
                             <div class="tab">Reservas</div>
                             <div class="tab">Estadísticas</div>
+<<<<<<< HEAD
                             <div class="tab">Gestión</div>
+=======
+                            <c:if test="${isAdmin}">
+                                <div class="tab">Gestión</div>
+                            </c:if>
+>>>>>>> 47959a69808d8ed373ce0f6e50b4c58bc589a3b2
                         </div>
 
                         <!-- Tab Content: Perfil -->
@@ -254,6 +282,7 @@
                             <p>Aquí se mostrarán las estadísticas del usuario...</p>
                         </div>
 
+<<<<<<< HEAD
                         <!-- Tab Content: Gestión -->
                         <div class="tab-content">
                             <h2 class="section-title">Gestión de Contenido</h2>
@@ -477,6 +506,227 @@
             </div>
         </footer>
 
+=======
+                        <!-- GESTIÓN (solo ADMIN) -->
+                        <c:if test="${isAdmin}">
+                            <div class="tab-content">
+                                <h2 class="section-title">Gestión de Contenido</h2>
+                                <div class="management-grid">
+                                    <!-- Películas -->
+                                    <div class="management-card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Películas</h3>
+                                            <span class="crud-badge">CRUD</span>
+                                        </div>
+                                        <p class="card-description">
+                                            Administrar catálogo de películas, géneros y clasificaciones
+                                        </p>
+                                        <div class="card-actions">
+                                            <button class="btn-manage" data-bs-toggle="modal" data-bs-target="#modalPeliculas">Gestionar</button>
+                                            <button class="btn-reports" data-bs-toggle="modal" data-bs-target="#modalAgregarPeliculas">Agregar Peliculas</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cines y Salas -->
+                                    <div class="management-card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Cines y Salas</h3>
+                                            <span class="crud-badge">CRUD</span>
+                                        </div>
+                                        <p class="card-description">
+                                            Administrar ubicaciones, salas y configuraciones de asientos
+                                        </p>
+                                        <div class="card-actions">
+                                            <button class="btn-manage" data-bs-toggle="modal" data-bs-target="#modalReservas">Gestionar</button>
+                                            <button class="btn-reports" data-bs-toggle="modal" data-bs-target="#modalReportes">Reportes</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Horarios y Funciones -->
+                                    <div class="management-card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Horarios y Funciones</h3>
+                                            <span class="crud-badge">CRUD</span>
+                                        </div>
+                                        <p class="card-description">
+                                            Programar funciones, horarios y precios especiales
+                                        </p>
+                                        <div class="card-actions">
+                                            <button class="btn-manage" data-bs-toggle="modal" data-bs-target="#modalReservas">Gestionar</button>
+                                            <button class="btn-reports" data-bs-toggle="modal" data-bs-target="#modalReportes">Reportes</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Promociones -->
+                                    <div class="management-card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Promociones</h3>
+                                            <span class="crud-badge">CRUD</span>
+                                        </div>
+                                        <p class="card-description">
+                                            Crear y administrar descuentos, ofertas y promociones especiales
+                                        </p>
+                                        <div class="card-actions">
+                                            <button class="btn-manage" data-bs-toggle="modal" data-bs-target="#modalReservas">Gestionar</button>
+                                            <button class="btn-reports" data-bs-toggle="modal" data-bs-target="#modalReportes">Reportes</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Usuarios -->
+                                    <div class="management-card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Usuarios</h3>
+                                            <span class="crud-badge">CRUD</span>
+                                        </div>
+                                        <p class="card-description">
+                                            Administrar cuentas de usuarios y permisos del sistema
+                                        </p>
+                                        <div class="card-actions">
+                                            <button class="btn-manage" data-bs-toggle="modal" data-bs-target="#modalReservas">Gestionar</button>
+                                            <button class="btn-reports" data-bs-toggle="modal" data-bs-target="#modalReportes">Reportes</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reservas -->
+                                    <div class="management-card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Reservas</h3>
+                                            <span class="crud-badge">CRUD</span>
+                                        </div>
+                                        <p class="card-description">
+                                            Administrar reservas, cancelaciones y reembolsos
+                                        </p>
+                                        <div class="card-actions">
+                                            <button class="btn-manage" data-bs-toggle="modal" data-bs-target="#modalReservas">Gestionar</button>
+                                            <button class="btn-reports" data-bs-toggle="modal" data-bs-target="#modalReportes">Reportes</button>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Ejemplo para peliculas-->
+            <!-- Modal: Ver Películas -->
+            <p style="color:red">
+  Películas cargadas: ${fn:length(peliculas)}
+</p>
+<!-- Modal: Ver Películas -->
+<div class="modal fade" id="modalPeliculas" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Películas Registradas</h5></div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr><th>Título</th><th>Duración</th><th>Clasificación</th><th>Acciones</th></tr>
+          </thead>
+          <tbody>
+            <c:forEach var="p" items="${peliculas}">
+              <tr>
+                <td>${p.titulo}</td>
+                <td>${p.duracionMin} min</td>
+                <td>${p.clasificacion}</td>
+                <td>
+                  <!-- Botón Eliminar -->
+                  <form method="post" action="${pageContext.request.contextPath}/perfil" style="display:inline">
+                    <input type="hidden" name="accion" value="eliminar" />
+                    <input type="hidden" name="id" value="${p.id}" />
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                  </form>
+
+                  <!-- Botón Editar -->
+                  <button class="btn btn-warning btn-sm"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalEditarPeliculas${p.id}">
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+              <!-- Modal de edición de película -->
+<c:forEach var="p" items="${peliculas}">
+  <div class="modal fade" id="modalEditarPeliculas${p.id}" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="${pageContext.request.contextPath}/perfil" method="post">
+          <input type="hidden" name="accion" value="editar"/>
+          <input type="hidden" name="id" value="${p.id}"/>
+
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Película: ${p.titulo}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" value="${p.titulo}" required/></div>
+            <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" value="${p.duracionMin}" required/></div>
+            <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control">${p.sinopsis}</textarea></div>
+            <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control" value="${p.clasificacion}"/></div>
+            <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control" value="${p.estreno}"/></div>
+            <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control" value="${p.imgUrl}"/></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-success" type="submit">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</c:forEach>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
+            <!-- Modal: Agregar Película -->
+            <div class="modal fade" id="modalAgregarPeliculas" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="${pageContext.request.contextPath}/perfil" method="post">
+                            <div class="modal-header"><h5 class="modal-title">Agregar Nueva Película</h5></div>
+                            <div class="modal-body">
+                                <input type="hidden" name="accion" value="agregar"/>
+                                <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" required/></div>
+                                <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" required/></div>
+                                <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control"></textarea></div>
+                                <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control"/></div>
+                                <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control"/></div>
+                                <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control"/></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <!-- Pie de página igual que antes -->
+            </div>
+        </footer>
+
+>>>>>>> 47959a69808d8ed373ce0f6e50b4c58bc589a3b2
         <script>
             // Script para las pestañas
             const tabs = document.querySelectorAll('.tab');
@@ -491,6 +741,13 @@
                 });
             });
         </script>
+<<<<<<< HEAD
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+=======
+        <!-- Bootstrap Bundle JS -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+>>>>>>> 47959a69808d8ed373ce0f6e50b4c58bc589a3b2
     </body>
 </html>
