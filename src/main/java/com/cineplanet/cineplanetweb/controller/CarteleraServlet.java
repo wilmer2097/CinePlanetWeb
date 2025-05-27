@@ -2,6 +2,7 @@ package com.cineplanet.cineplanetweb.controller;
 
 import com.cineplanet.cineplanetweb.dao.CarteleraDAO;
 import com.cineplanet.cineplanetweb.model.FuncionHoy;
+import com.cineplanet.cineplanetweb.model.Pelicula;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +24,11 @@ public class CarteleraServlet extends HttpServlet {
         log("doGet /cartelera – fetching funcionesHoy desde DAO");
 
         try {
-            List<FuncionHoy> funcionesHoy = dao.obtenerFuncionesHoy();
+             List<FuncionHoy> funcionesHoy = dao.obtenerFuncionesHoy();
             req.setAttribute("funcionesHoy", funcionesHoy);
+
+            List<Pelicula> proximosEstrenos = dao.obtenerProximosEstrenos();
+            req.setAttribute("proximosEstrenos", proximosEstrenos);
         } catch (SQLException e) {
             throw new ServletException("Error al obtener funciones de hoy", e);
         }

@@ -8,11 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CinePlanet – Cartelera</title>
-  <!-- Bootstrap 5 CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet" crossorigin="anonymous"/>
-  <!-- Estilos personalizados -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cartelera.css" />
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -21,31 +17,21 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="${pageContext.request.contextPath}/cartelera">CinePlanet</a>
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link ${pageContext.request.requestURI.endsWith("/cartelera")?'active':''}"
-               href="${pageContext.request.contextPath}/cartelera">Cartelera</a>
+            <a class="nav-link ${pageContext.request.requestURI.endsWith("/cartelera")?'active':''}" href="${pageContext.request.contextPath}/cartelera">Cartelera</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/proximos">Próximos Estrenos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/cines">Cines</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/vista/promociones.html">Promociones</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/ver-anexos">Ver Anexos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/preguntas-frecuentes">FAQ</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cines">Cines</a></li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/vista/promociones.html">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/ver-anexos">Ver Anexos</a></li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/preguntas-frecuentes">FAQ</a></li>
         </ul>
         <form class="d-flex" action="${pageContext.request.contextPath}/buscar" method="get">
           <input class="form-control me-2" type="search" name="q" placeholder="Buscar películas…">
@@ -75,15 +61,13 @@
               <c:otherwise>${text}</c:otherwise>
             </c:choose>
           </p>
-          <a href="${pageContext.request.contextPath}/reservar?funcionId=${hero.funcionId}"
-             class="btn btn-lg btn-primary">Ver Horarios</a>
+          <a href="${pageContext.request.contextPath}/reservar?funcionId=${hero.funcionId}" class="btn btn-lg btn-primary">Ver Horarios</a>
         </div>
       </section>
     </c:if>
 
     <!-- FILTROS -->
-    <form class="row row-cols-1 row-cols-md-6 g-3 mb-5"
-          method="get" action="${pageContext.request.contextPath}/cartelera">
+    <form class="row row-cols-1 row-cols-md-6 g-3 mb-5" method="get" action="${pageContext.request.contextPath}/cartelera">
       <c:forEach var="key" items="${filtros.keySet()}">
         <div class="col">
           <select class="form-select" name="${key}">
@@ -102,21 +86,19 @@
     <!-- CARTELERA HOY -->
     <h2 class="mb-4">En Cartelera Hoy</h2>
 
-    <!-- CARROUSEL SUPERIOR -->
+    <!-- CARROUSEL -->
     <div id="carouselHoyTop" class="carousel slide mb-5" data-bs-ride="carousel">
       <div class="carousel-inner">
         <c:forEach var="f" items="${funcionesHoy}" varStatus="st">
           <div class="carousel-item ${st.first?'active':''}">
             <div class="position-relative" style="max-height:400px; overflow:hidden;">
-              <img src="${f.imgUrl}" class="d-block w-100" alt="${f.titulo}"
-                   style="object-fit:cover; height:400px;">
+              <img src="${f.imgUrl}" class="d-block w-100" alt="${f.titulo}" style="object-fit:cover; height:400px;">
               <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded px-3 py-2">
                 <h5 class="mb-1">${f.titulo}</h5>
                 <p class="small mb-2">
                   <fmt:formatDate value="${f.fechaHora}" pattern="dd MMM yyyy, HH:mm"/>
                 </p>
-                <a href="${pageContext.request.contextPath}/reservar?funcionId=${f.funcionId}"
-                   class="btn btn-sm btn-primary">Reservar</a>
+                <a href="${pageContext.request.contextPath}/reservar?funcionId=${f.funcionId}" class="btn btn-sm btn-primary">Reservar</a>
               </div>
             </div>
           </div>
@@ -130,7 +112,7 @@
       </button>
     </div>
 
-    <!-- GRID DE TARJETAS ABAJO -->
+    <!-- Tarjetas cartelera -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-5">
       <c:forEach var="f" items="${funcionesHoy}">
         <div class="col">
@@ -141,8 +123,7 @@
               <p class="text-muted small mb-3">
                 <fmt:formatDate value="${f.fechaHora}" pattern="dd MMM yyyy, HH:mm"/>
               </p>
-              <a href="${pageContext.request.contextPath}/reservar?funcionId=${f.funcionId}"
-                 class="btn btn-primary mt-auto">Reservar</a>
+              <a href="${pageContext.request.contextPath}/reservar?funcionId=${f.funcionId}" class="btn btn-primary mt-auto">Reservar</a>
             </div>
           </div>
         </div>
@@ -158,10 +139,16 @@
             <img src="${p.imgUrl}" class="card-img-top" alt="${p.titulo}">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">${p.titulo}</h5>
-              <p class="text-muted small mb-3">
-                <fmt:formatDate value="${p.fechaHora}" pattern="dd MMM yyyy"/>
+              <p class="text-muted small mb-2">${p.estreno}</p>
+              <p class="card-text small">
+                <c:choose>
+                  <c:when test="${fn:length(p.sinopsis) > 100}">
+                    ${fn:substring(p.sinopsis, 0, 100)}&hellip;
+                  </c:when>
+                  <c:otherwise>${p.sinopsis}</c:otherwise>
+                </c:choose>
               </p>
-              <a href="#" class="btn btn-outline-primary mt-auto">Pre-reserva</a>
+              <a href="#" class="btn btn-outline-primary mt-auto disabled">Pre-reserva</a>
             </div>
           </div>
         </div>
@@ -177,8 +164,7 @@
             <img src="${r.imgUrl}" class="card-img-top" alt="${r.titulo}">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">${r.titulo}</h5>
-              <a href="${pageContext.request.contextPath}/reservar?funcionId=${r.funcionId}"
-                 class="btn btn-primary mt-auto">Reservar</a>
+              <a href="${pageContext.request.contextPath}/reservar?funcionId=${r.funcionId}" class="btn btn-primary mt-auto">Reservar</a>
             </div>
           </div>
         </div>
@@ -194,9 +180,6 @@
     </div>
   </footer>
 
-  <!-- Bootstrap Bundle JS -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

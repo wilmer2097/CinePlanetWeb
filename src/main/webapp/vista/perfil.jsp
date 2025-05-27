@@ -365,20 +365,115 @@
                 </div>
             </div>
             <!-- Modal Ejemplo para peliculas-->
-            <div class="modal fade" id="modalPeliculas" tabindex="-1" aria-labelledby="modalPeliculas" aria-hidden="true">
-              <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modalPeliculas">Gestión de Películas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                  </div>
-                  <div class="modal-body">
-                    <!-- Aquí tu formulario, vista parcial o contenido -->
-                    <p>Contenido de gestión de películas...</p>
-                  </div>
+            <!-- Modal: Ver Películas -->
+            <p style="color:red">
+  Películas cargadas: ${fn:length(peliculas)}
+</p>
+<!-- Modal: Ver Películas -->
+<div class="modal fade" id="modalPeliculas" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Películas Registradas</h5></div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr><th>Título</th><th>Duración</th><th>Clasificación</th><th>Acciones</th></tr>
+          </thead>
+          <tbody>
+            <c:forEach var="p" items="${peliculas}">
+              <tr>
+                <td>${p.titulo}</td>
+                <td>${p.duracionMin} min</td>
+                <td>${p.clasificacion}</td>
+                <td>
+                  <!-- Botón Eliminar -->
+                  <form method="post" action="${pageContext.request.contextPath}/perfil" style="display:inline">
+                    <input type="hidden" name="accion" value="eliminar" />
+                    <input type="hidden" name="id" value="${p.id}" />
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                  </form>
+
+                  <!-- Botón Editar -->
+                  <button class="btn btn-warning btn-sm"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalEditarPeliculas${p.id}">
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+              <!-- Modal de edición de película -->
+<c:forEach var="p" items="${peliculas}">
+  <div class="modal fade" id="modalEditarPeliculas${p.id}" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="${pageContext.request.contextPath}/perfil" method="post">
+          <input type="hidden" name="accion" value="editar"/>
+          <input type="hidden" name="id" value="${p.id}"/>
+
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Película: ${p.titulo}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" value="${p.titulo}" required/></div>
+            <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" value="${p.duracionMin}" required/></div>
+            <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control">${p.sinopsis}</textarea></div>
+            <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control" value="${p.clasificacion}"/></div>
+            <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control" value="${p.estreno}"/></div>
+            <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control" value="${p.imgUrl}"/></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-success" type="submit">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</c:forEach>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
+            <!-- Modal: Agregar Película -->
+            <div class="modal fade" id="modalAgregarPeliculas" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="${pageContext.request.contextPath}/perfil" method="post">
+                            <div class="modal-header"><h5 class="modal-title">Agregar Nueva Película</h5></div>
+                            <div class="modal-body">
+                                <input type="hidden" name="accion" value="agregar"/>
+                                <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" required/></div>
+                                <div class="mb-2"><label>Duración (min)</label><input type="number" name="duracion" class="form-control" required/></div>
+                                <div class="mb-2"><label>Sinopsis</label><textarea name="sinopsis" class="form-control"></textarea></div>
+                                <div class="mb-2"><label>Clasificación</label><input name="clasificacion" class="form-control"/></div>
+                                <div class="mb-2"><label>Fecha de Estreno</label><input type="date" name="estreno" class="form-control"/></div>
+                                <div class="mb-2"><label>Imagen URL</label><input name="img_url" class="form-control"/></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
+
 
         </main>
 
