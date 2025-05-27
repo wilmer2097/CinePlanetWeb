@@ -16,6 +16,7 @@ public class LoginServlet extends HttpServlet {
     private static final String ATTR_USER     = "user";
     private static final String JSP_LOGIN     = "/vista/login.jsp";
     private static final String URL_CARTELERA = "/cartelera";
+    
 
     private UserDAO userDao;
 
@@ -39,34 +40,29 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        log("LoginServlet.doPost() invoked");
-
-        String email = Optional.ofNullable(req.getParameter("email"))
-                               .orElse("").trim();
-        String password = Optional.ofNullable(req.getParameter("password"))
-                                  .orElse("");
+        String email    = Optional.ofNullable(req.getParameter("email")).orElse("").trim();
+        String password = Optional.ofNullable(req.getParameter("password")).orElse("");
 
         if (email.isEmpty() || password.isEmpty()) {
             req.setAttribute("error", "Usuario y contraseña son obligatorios");
-            req.getRequestDispatcher(JSP_LOGIN)
-               .forward(req, resp);
+            req.getRequestDispatcher(JSP_LOGIN).forward(req, resp);
             return;
         }
 
         try {
             User usuario = userDao.validate(email, password);
             if (usuario != null) {
-                log("✔ Login exitoso para usuario=" + email);
-                req.getSession().setAttribute(ATTR_USER, usuario);
+                // guardamos el User completo (incluye lista de roles)
+                HttpSession session = req.getSession();
+                session.setAttribute(ATTR_USER, usuario);
+
+                // redirigir al dashboard o cartelera
                 resp.sendRedirect(req.getContextPath() + URL_CARTELERA);
             } else {
-                log("✘ Credenciales inválidas para usuario=" + email);
                 req.setAttribute("error", "Usuario o contraseña incorrectos");
-                req.getRequestDispatcher(JSP_LOGIN)
-                   .forward(req, resp);
+                req.getRequestDispatcher(JSP_LOGIN).forward(req, resp);
             }
         } catch (Exception ex) {
-            log("Error validando usuario", ex);
             throw new ServletException("Error al validar usuario", ex);
         }
     }

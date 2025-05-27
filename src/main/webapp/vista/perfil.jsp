@@ -131,6 +131,15 @@
     </style>
 </head>
 <body>
+    <!-- 1) Calcular isAdmin y exponer 'usuario' en página -->
+    <c:set var="usuario" value="${sessionScope.user}" />
+    <c:set var="isAdmin"  value="false" />
+    <c:forEach var="r" items="${usuario.roles}">
+      <c:if test="${r.nombre == 'ADMIN'}">
+        <c:set var="isAdmin" value="true" />
+      </c:if>
+    </c:forEach>
+
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -177,7 +186,9 @@
             <div class="tab active">Perfil</div>
             <div class="tab">Reservas</div>
             <div class="tab">Estadísticas</div>
+            <c:if test="${isAdmin}">
             <div class="tab">Gestión</div>
+            </c:if>
           </div>
 
           <!-- Tab Content: Perfil -->
@@ -249,102 +260,103 @@
             <p>Aquí se mostrarán las estadísticas del usuario...</p>
           </div>
 
-          <!-- Tab Content: Gestión -->
-          <div class="tab-content">
-            <h2 class="section-title">Gestión de Contenido</h2>
-            
-            <div class="management-grid">
-              <!-- Películas -->
-              <div class="management-card">
-                <div class="card-header">
-                  <h3 class="card-title">Películas</h3>
-                  <span class="crud-badge">CRUD</span>
-                </div>
-                <p class="card-description">
-                  Administrar catálogo de películas, géneros y clasificaciones
-                </p>
-                <div class="card-actions">
-                  <a href="${pageContext.request.contextPath}/admin/peliculas" class="btn-manage">Gestionar</a>
-                  <a href="${pageContext.request.contextPath}/admin/peliculas/nueva" class="btn-new">Nueva Película</a>
-                </div>
-              </div>
+            <!-- GESTIÓN (solo ADMIN) -->
+            <c:if test="${isAdmin}">
+              <div class="tab-content">
+                <h2 class="section-title">Gestión de Contenido</h2>
+                <div class="management-grid">
+                  <!-- Películas -->
+                  <div class="management-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Películas</h3>
+                      <span class="crud-badge">CRUD</span>
+                    </div>
+                    <p class="card-description">
+                      Administrar catálogo de películas, géneros y clasificaciones
+                    </p>
+                    <div class="card-actions">
+                      <a href="${pageContext.request.contextPath}/admin/peliculas" class="btn-manage">Gestionar</a>
+                      <a href="${pageContext.request.contextPath}/admin/peliculas/nueva" class="btn-new">Nueva Película</a>
+                    </div>
+                  </div>
 
-              <!-- Cines y Salas -->
-              <div class="management-card">
-                <div class="card-header">
-                  <h3 class="card-title">Cines y Salas</h3>
-                  <span class="crud-badge">CRUD</span>
-                </div>
-                <p class="card-description">
-                  Administrar ubicaciones, salas y configuraciones de asientos
-                </p>
-                <div class="card-actions">
-                  <a href="${pageContext.request.contextPath}/admin/cines" class="btn-manage">Gestionar</a>
-                  <a href="${pageContext.request.contextPath}/admin/salas" class="btn-special">Salas</a>
-                </div>
-              </div>
+                  <!-- Cines y Salas -->
+                  <div class="management-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Cines y Salas</h3>
+                      <span class="crud-badge">CRUD</span>
+                    </div>
+                    <p class="card-description">
+                      Administrar ubicaciones, salas y configuraciones de asientos
+                    </p>
+                    <div class="card-actions">
+                      <a href="${pageContext.request.contextPath}/admin/cines" class="btn-manage">Gestionar</a>
+                      <a href="${pageContext.request.contextPath}/admin/salas" class="btn-special">Salas</a>
+                    </div>
+                  </div>
 
-              <!-- Horarios y Funciones -->
-              <div class="management-card">
-                <div class="card-header">
-                  <h3 class="card-title">Horarios y Funciones</h3>
-                  <span class="crud-badge">CRUD</span>
-                </div>
-                <p class="card-description">
-                  Programar funciones, horarios y precios especiales
-                </p>
-                <div class="card-actions">
-                  <a href="${pageContext.request.contextPath}/admin/funciones" class="btn-manage">Gestionar</a>
-                  <a href="${pageContext.request.contextPath}/admin/funciones/nueva" class="btn-new">Nueva Función</a>
-                </div>
-              </div>
+                  <!-- Horarios y Funciones -->
+                  <div class="management-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Horarios y Funciones</h3>
+                      <span class="crud-badge">CRUD</span>
+                    </div>
+                    <p class="card-description">
+                      Programar funciones, horarios y precios especiales
+                    </p>
+                    <div class="card-actions">
+                      <a href="${pageContext.request.contextPath}/admin/funciones" class="btn-manage">Gestionar</a>
+                      <a href="${pageContext.request.contextPath}/admin/funciones/nueva" class="btn-new">Nueva Función</a>
+                    </div>
+                  </div>
 
-              <!-- Promociones -->
-              <div class="management-card">
-                <div class="card-header">
-                  <h3 class="card-title">Promociones</h3>
-                  <span class="crud-badge">CRUD</span>
-                </div>
-                <p class="card-description">
-                  Crear y administrar descuentos, ofertas y promociones especiales
-                </p>
-                <div class="card-actions">
-                  <a href="${pageContext.request.contextPath}/admin/promociones" class="btn-manage">Gestionar</a>
-                  <a href="${pageContext.request.contextPath}/admin/promociones/nueva" class="btn-new">Nueva Promoción</a>
-                </div>
-              </div>
+                  <!-- Promociones -->
+                  <div class="management-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Promociones</h3>
+                      <span class="crud-badge">CRUD</span>
+                    </div>
+                    <p class="card-description">
+                      Crear y administrar descuentos, ofertas y promociones especiales
+                    </p>
+                    <div class="card-actions">
+                      <a href="${pageContext.request.contextPath}/admin/promociones" class="btn-manage">Gestionar</a>
+                      <a href="${pageContext.request.contextPath}/admin/promociones/nueva" class="btn-new">Nueva Promoción</a>
+                    </div>
+                  </div>
 
-              <!-- Usuarios -->
-              <div class="management-card">
-                <div class="card-header">
-                  <h3 class="card-title">Usuarios</h3>
-                  <span class="crud-badge">CRUD</span>
-                </div>
-                <p class="card-description">
-                  Administrar cuentas de usuarios y permisos del sistema
-                </p>
-                <div class="card-actions">
-                  <a href="${pageContext.request.contextPath}/admin/usuarios" class="btn-manage">Gestionar</a>
-                  <a href="${pageContext.request.contextPath}/admin/roles" class="btn-special">Roles</a>
-                </div>
-              </div>
+                  <!-- Usuarios -->
+                  <div class="management-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Usuarios</h3>
+                      <span class="crud-badge">CRUD</span>
+                    </div>
+                    <p class="card-description">
+                      Administrar cuentas de usuarios y permisos del sistema
+                    </p>
+                    <div class="card-actions">
+                      <a href="${pageContext.request.contextPath}/admin/usuarios" class="btn-manage">Gestionar</a>
+                      <a href="${pageContext.request.contextPath}/admin/roles" class="btn-special">Roles</a>
+                    </div>
+                  </div>
 
-              <!-- Reservas -->
-              <div class="management-card">
-                <div class="card-header">
-                  <h3 class="card-title">Reservas</h3>
-                  <span class="crud-badge">CRUD</span>
-                </div>
-                <p class="card-description">
-                  Administrar reservas, cancelaciones y reembolsos
-                </p>
-                <div class="card-actions">
-                  <a href="${pageContext.request.contextPath}/admin/reservas" class="btn-manage">Gestionar</a>
-                  <a href="${pageContext.request.contextPath}/admin/reservas/reportes" class="btn-reports">Reportes</a>
+                  <!-- Reservas -->
+                  <div class="management-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Reservas</h3>
+                      <span class="crud-badge">CRUD</span>
+                    </div>
+                    <p class="card-description">
+                      Administrar reservas, cancelaciones y reembolsos
+                    </p>
+                    <div class="card-actions">
+                      <a href="${pageContext.request.contextPath}/admin/reservas" class="btn-manage">Gestionar</a>
+                      <a href="${pageContext.request.contextPath}/admin/reservas/reportes" class="btn-reports">Reportes</a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </c:if>
         </div>
       </div>
     </div>
