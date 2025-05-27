@@ -141,6 +141,10 @@
             .modal-body label.form-label {
                 color: black !important;
             }
+            .modal-content {
+            background-color: #141414;
+            color: white; /* Opcional, para que el texto sea visible */
+            }
 
         </style>
     </head>
@@ -169,8 +173,12 @@
                     <form action="${pageContext.request.contextPath}/buscar" method="get" class="search-box">
                         <input type="text" name="q" placeholder="Buscar películas...">
                     </form>
-                    <a href="${pageContext.request.contextPath}/profile" class="btn btn-primary">Mi Cuenta</a>
+                    <a href="${pageContext.request.contextPath}/perfil" class="btn btn-primary me-2">Mi Cuenta</a>
+                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
                 </div>
+
             </nav>
         </header>
 
@@ -493,7 +501,7 @@
             <div class="modal fade" id="modalPeliculas" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header"><h5 class="modal-title">Películas Registradas</h5></div>
+                        <div class="modal-header"><h5 class="page-title">Películas Registradas</h5></div>
                         <div class="modal-body">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -534,12 +542,12 @@
                 <div class="modal fade" id="modalEditarPeliculas${p.id}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form action="${pageContext.request.contextPath}/perfil" method="post">
+                            <form action="${pageContext.request.contextPath}/perfil" method="post" accept-charset="UTF-8">
                                 <input type="hidden" name="accion" value="editar"/>
                                 <input type="hidden" name="id" value="${p.id}"/>
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Editar Película: ${p.titulo}</h5>
+                                    <h5 class="page-title">Editar Película: ${p.titulo}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
@@ -574,8 +582,8 @@
 <div class="modal fade" id="modalAgregarPeliculas" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="${pageContext.request.contextPath}/perfil" method="post">
-                <div class="modal-header"><h5 class="modal-title">Agregar Nueva Película</h5></div>
+            <form action="${pageContext.request.contextPath}/perfil" method="post" accept-charset="UTF-8">
+                <div class="modal-header"><h5 class="page-title">Agregar Nueva Película</h5></div>
                 <div class="modal-body">
                     <input type="hidden" name="accion" value="agregar"/>
                     <div class="mb-2"><label>Título</label><input name="titulo" class="form-control" required/></div>

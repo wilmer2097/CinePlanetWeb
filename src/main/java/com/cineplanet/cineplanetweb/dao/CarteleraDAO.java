@@ -9,29 +9,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarteleraDAO {
-    public List<Pelicula> obtenerProximosEstrenos() throws SQLException {
-        String sql = "SELECT pelicula_id, titulo, duracion_min, sinopsis, clasificacion, estreno, img_url " +
-                     "FROM pelicula WHERE estreno > CURDATE() ORDER BY estreno ASC";
+public List<Pelicula> obtenerProximosEstrenos() throws SQLException {
+    String sql = "SELECT pelicula_id, titulo, duracion_min, sinopsis, clasificacion, estreno, img_url " +
+                 "FROM pelicula WHERE estreno > CURDATE() ORDER BY estreno ASC";
 
-        List<Pelicula> lista = new ArrayList<>();
-        try (Connection conn = Conexion.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+    List<Pelicula> lista = new ArrayList<>();
+    try (Connection conn = Conexion.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
-                Pelicula p = new Pelicula();
-                p.setId(rs.getInt("pelicula_id"));
-                p.setTitulo(rs.getString("titulo"));
-                p.setDuracionMin(rs.getInt("duracion_min"));
-                p.setSinopsis(rs.getString("sinopsis"));
-                p.setClasificacion(rs.getString("clasificacion"));
-                p.setEstreno(rs.getString("estreno")); // ya es String
-                p.setImgUrl(rs.getString("img_url"));
-                lista.add(p);
-            }
+        System.out.println("Ejecutando consulta de próximos estrenos...");
+
+        while (rs.next()) {
+            Pelicula p = new Pelicula();
+            p.setId(rs.getInt("pelicula_id"));
+            p.setTitulo(rs.getString("titulo"));
+            p.setDuracionMin(rs.getInt("duracion_min"));
+            p.setSinopsis(rs.getString("sinopsis"));
+            p.setClasificacion(rs.getString("clasificacion"));
+            p.setEstreno(rs.getString("estreno"));
+            p.setImgUrl(rs.getString("img_url"));
+
+            System.out.println("Película encontrada: " + p.getTitulo() + " | Estreno: " + p.getEstreno());
+            lista.add(p);
         }
-        return lista;
+
+        System.out.println("Total de próximos estrenos encontrados: " + lista.size());
     }
+
+    return lista;
+}
+
 
     public List<FuncionHoy> obtenerFuncionesHoy() throws SQLException {
         String sql =

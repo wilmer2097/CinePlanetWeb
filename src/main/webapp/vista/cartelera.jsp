@@ -131,6 +131,12 @@
     </div>
 
     <!-- PRÓXIMOS ESTRENOS -->
+    <c:if test="${empty proximosEstrenos}">
+  <div class="alert alert-warning">
+    No se encontraron próximos estrenos.
+  </div>
+</c:if>
+
     <h2 class="mb-4">Próximos Estrenos</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-5">
       <c:forEach var="p" items="${proximosEstrenos}">

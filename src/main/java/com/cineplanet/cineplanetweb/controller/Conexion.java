@@ -9,15 +9,15 @@ public class Conexion {
 
     // Credenciales y configuración de MySQL
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "@123polFer123";
+    private static final String PASSWORD = "root";
     private static final String DATABASE = "cineplanet_web";
     private static final String HOST     = "localhost";
     private static final int    PORT     = 3306;
 
-    // URL completa del JDBC (ajustada a MySQL moderno)
+    // URL completa del JDBC (UTF-8 activado)
     private static final String URL =
         "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE +
-        "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
     // Carga del driver al inicio de la clase
     static {

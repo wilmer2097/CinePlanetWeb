@@ -1,18 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.cineplanet.cineplanetweb.controller;
-
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-/**
- *
- * @author wilme
- */
-
 
 import com.cineplanet.cineplanetweb.dao.PeliculaDAO;
 import com.cineplanet.cineplanetweb.model.Pelicula;
@@ -49,6 +35,10 @@ public class PeliculaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
+        //Asegura que los datos se interpreten como UTF-8
+        req.setCharacterEncoding("UTF-8");
+
         String accion = req.getParameter("accion");
 
         try {
@@ -82,6 +72,7 @@ public class PeliculaServlet extends HttpServlet {
             throw new ServletException("Error al procesar acción", e);
         }
 
+        // Vuelve a cargar la vista con la lista actualizada
         doGet(req, resp);
     }
 }
