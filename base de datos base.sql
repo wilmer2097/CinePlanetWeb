@@ -209,6 +209,7 @@ INSERT INTO pelicula (titulo, duracion_min, sinopsis, clasificacion, estreno, im
 
 -- ===========================================
 --  INSERTS DE FUNCIONES (26 MAYO 2025)
+-- ¡Debes actualiazr las fechas a la actual!
 -- ===========================================
 INSERT INTO funcion (sala_id, pelicula_id, fecha_hora, idioma, precio_base) VALUES
   (1, 1, '2025-05-26 18:00:00', 'SUB', 30.00),
