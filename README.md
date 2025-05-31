@@ -1,145 +1,181 @@
-🧍‍♂️ usuario
-¿Qué guarda esta tabla? Información de las personas que usan la plataforma web.
+# 🎬 Base de Datos Cineplanet Web
 
-Ejemplo real: Juan se registra en la web de Cineplanet para comprar entradas.
+Este proyecto organiza la base de datos de una plataforma web para un cine, similar a **Cineplanet**, donde los usuarios pueden registrarse, ver la cartelera, hacer reservas y dejar sugerencias o reclamos.
 
-Campos clave:
+---
 
-usuario_id: Identificador único del cliente (como el DNI).
+## 🧍‍♂️ Tabla: `usuario`
 
-nombre, email, telefono: Datos personales.
+### ¿Qué guarda?
+Información de las personas que usan la plataforma web.
 
-password: Encriptado (hash).
+📌 **Ejemplo real**: Juan se registra en la web de Cineplanet para comprar entradas.
 
-fecha_reg: Cuándo se registró.
+### 🔑 Campos clave:
+- `usuario_id`: Identificador único (como el DNI).
+- `nombre`, `email`, `telefono`: Datos personales.
+- `password`: Guardado en formato encriptado (hash).
+- `fecha_reg`: Fecha de registro.
 
-¿Qué pasaría si no hubiera UNIQUE en email?
-Se podría registrar la misma persona varias veces con el mismo correo. ❌
+⚠️ **¿Qué pasa si no hay `UNIQUE` en `email`?**
+> Se podría registrar la misma persona varias veces con el mismo correo. ❌
 
-🏢 complejo
-¿Qué representa? Cada cine en una ciudad.
+---
 
-Ejemplo real: Cineplanet San Isidro.
+## 🏢 Tabla: `complejo`
 
-Campos clave:
+### ¿Qué representa?
+Cada cine ubicado en una ciudad.
 
-complejo_id: Identificador del cine.
+📌 **Ejemplo real**: Cineplanet San Isidro.
 
-ciudad: Dónde está.
+### 🔑 Campos clave:
+- `complejo_id`: ID único del cine.
+- `ciudad`: Ciudad donde se ubica.
+- `direccion`: Calle o avenida.
 
-direccion: Calle o avenida.
+---
 
-🎥 sala
-¿Qué representa? Una sala específica dentro de un complejo.
+## 🎥 Tabla: `sala`
 
-Ejemplo real: "Sala 1" del Cineplanet Miraflores.
+### ¿Qué representa?
+Una sala específica dentro de un complejo (cine).
 
-Campos clave:
+📌 **Ejemplo real**: “Sala 1” del Cineplanet Miraflores.
 
-tipo: Puede ser NORMAL, XTREME, o VIP.
+### 🔑 Campos clave:
+- `tipo`: NORMAL, XTREME o VIP.
+- `aforo_total`: Número de asientos.
+- `complejo_id`: FK que relaciona la sala con su cine.
 
-aforo_total: Número de asientos.
+🔗 **Relaciones:**
+- Tiene clave foránea a `complejo`.
+- Si se borra un cine, se borran sus salas automáticamente (`ON DELETE CASCADE`).
 
-complejo_id: Relaciona esta sala con su cine.
+---
 
-🔗 Relaciones:
+## 💺 Tabla: `asiento`
 
-Tiene una clave foránea a complejo. Si se borra un cine, se borran sus salas. (ON DELETE CASCADE)
+### ¿Qué representa?
+Cada asiento físico dentro de una sala.
 
-💺 asiento
-¿Qué representa? Cada asiento físico dentro de una sala.
+📌 **Ejemplo**: Fila A, asiento 10.
 
-Ejemplo: Fila A, asiento 10.
+### 🔑 Campos clave:
+- `fila`, `numero`: Posición exacta del asiento.
+- `uq_asiento`: Evita duplicados (no pueden existir dos A-10 en la misma sala).
 
-Campos clave:
+---
 
-fila y numero: Posición exacta del asiento.
+## 🎞️ Tabla: `pelicula`
 
-uq_asiento: Evita duplicar un asiento (no pueden existir dos Asiento A-10 en la misma sala).
+### ¿Qué representa?
+Información de cada película que se proyecta.
 
-🎞️ pelicula
-¿Qué representa? Información sobre una película.
+📌 **Ejemplo**: *Final Destination Bloodlines*
 
-Ejemplo: Final Destination Bloodlines
+### 🔑 Campos:
+- `titulo`, `duracion_min`, `sinopsis`, `clasificacion`, `estreno`, `img_url`.
 
-Campos:
+---
 
-titulo, duracion_min, sinopsis, clasificacion, estreno, img_url.
+## 🕓 Tabla: `funcion`
 
-🕓 funcion
-¿Qué representa? Una película en una sala a una hora específica.
+### ¿Qué representa?
+Una película en una sala a una hora específica.
 
-Ejemplo: Final Destination Bloodlines en Sala 1 a las 8:30 PM.
+📌 **Ejemplo**: *Final Destination Bloodlines* en Sala 1 a las 8:30 PM.
 
-Relaciones:
+### 🔗 Relaciones:
+- `sala_id`: En qué sala.
+- `pelicula_id`: Qué película.
+- `fecha_hora`, `idioma`, `precio_base`.
 
-sala_id: En qué sala se da la función.
+🚀 **Índice**: `idx_funcion_hora` → Acelera las búsquedas por hora.
 
-pelicula_id: Qué película se muestra.
+🔒 **Restricción importante**:
+> `uq_funcion_unica`: No se puede repetir una misma película en la misma sala, a la misma hora.
 
-fecha_hora, idioma, precio_base.
+---
 
-Índice: idx_funcion_hora: Acelera búsquedas por hora (útil para mostrar cartelera).
+## 📦 Tabla: `reserva`
 
-Restricción importante:
-🔒 uq_funcion_unica: No se puede repetir una película en la misma sala, a la misma hora.
+### ¿Qué representa?
+Una orden de compra (como un carrito de compras).
 
-📦 reserva
-¿Qué representa? Una orden de compra (como tu carrito de compras).
+📌 **Ejemplo**: Juan reserva 3 asientos para una función.
 
-Ejemplo: Juan reserva 3 asientos para una función.
+### 🔑 Campos clave:
+- `usuario_id`: Cliente que hace la reserva.
+- `estado`: Puede ser CREADA, CONFIRMADA o CANCELADA.
+- `total`: Monto total a pagar.
 
-Campos clave:
+---
 
-usuario_id: De quién es la reserva.
+## 🎟️ Tabla: `ticket`
 
-estado: Si está confirmada, cancelada, o creada.
+### ¿Qué representa?
+Cada entrada específica dentro de una reserva.
 
-total: Monto total.
+📌 **Ejemplo**: Un asiento (A-10) para la función de las 20:30.
 
-🎟️ ticket
-¿Qué representa? Cada entrada específica dentro de una reserva.
+### 🔗 Relaciones:
+- `reserva_id`, `funcion_id`, `asiento_id`.
 
-Ejemplo: Un asiento (A-10) para la función de las 20:30 de Final Destination.
+⚠️ **Restricción importante**:
+> `UNIQUE(funcion_id, asiento_id)`: Evita vender el mismo asiento dos veces para una misma función.
 
-Relaciones:
+---
 
-reserva_id, funcion_id, asiento_id.
+## 💳 Tabla: `pago`
 
-UNIQUE(funcion_id, asiento_id): Evita vender el mismo asiento 2 veces para una misma función. ⚠️
+### ¿Qué representa?
+El dinero que se paga por una reserva.
 
-💳 pago
-¿Qué representa? El dinero que se pagó por una reserva.
+📌 **Ejemplo**: Juan paga por su reserva con tarjeta o Yape.
 
-Ejemplo: Juan paga por su reserva con tarjeta Yape.
+### 🔑 Campos clave:
+- `metodo`: TARJETA, YAPE, EFECTIVO.
+- `estado`: PENDIENTE, APROBADO, FALLIDO.
+- `reserva_id`: Solo un pago por reserva (`UNIQUE`).
 
-Campos clave:
+---
 
-metodo: TARJETA, YAPE, EFECTIVO.
+## 💬 Tabla: `sugerencias`
 
-estado: PENDIENTE, APROBADO, FALLIDO.
+### ¿Qué representa?
+Opiniones o ideas que dejan los usuarios.
 
-reserva_id: Relación directa con una reserva (solo una vez, por eso es UNIQUE).
+📌 **Ejemplo**: “Pongan más funciones en 3D”.
 
-💬 sugerencias
-¿Qué representa? Opiniones o ideas que dejan los clientes.
+### 🔑 Campos:
+- `nombre`, `email`, `telefono`, `categoria`, `sugerencia`, `fecha_registro`.
 
-Ejemplo: “Pongan más funciones en 3D”.
+---
 
-Campos: nombre, email, telefono, categoria, sugerencia, fecha_registro.
+## 😠 Tabla: `reclamaciones`
 
-😠 reclamaciones
-¿Qué representa? Quejas formales sobre un problema.
+### ¿Qué representa?
+Quejas formales de los clientes.
 
-Ejemplo: “La película empezó 30 minutos tarde”.
+📌 **Ejemplo**: “La película empezó 30 minutos tarde”.
 
-Campos: Incluyen DNI, dirección, tipo de reclamo, detalle, y si acepta términos.
+### 🔑 Campos:
+- Incluye: `dni`, `direccion`, `tipo_reclamo`, `detalle`, y confirmación de términos.
 
-👁️ cartelera_hoy (VIEW)
-¿Qué es esto? Una vista (como una tabla virtual).
+---
 
-¿Qué muestra? Todas las funciones programadas para hoy (CURDATE()).
+## 👁️ Vista: `cartelera_hoy`
 
-¿Por qué es útil?
-Permite que tu frontend (tu página web) consulte directamente qué funciones mostrar sin escribir un JOIN complejo.
+### ¿Qué es?
+Una vista (como una tabla virtual).
+
+### ¿Qué muestra?
+Todas las funciones programadas para hoy (`CURDATE()`).
+
+💡 **¿Por qué es útil?**
+> Permite que el frontend consulte directamente la cartelera del día sin necesidad de hacer un `JOIN` complejo.
+
+---
+
 
