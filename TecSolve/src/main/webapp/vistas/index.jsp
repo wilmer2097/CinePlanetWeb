@@ -176,13 +176,13 @@
   <section class="productos">
     <h2>Nuestros Productos</h2>
     <div class="producto">
-      <img src="https://via.placeholder.com/150" alt="Producto 1" />
+      <img src="${pageContext.request.contextPath}/imagenes/tarjetagrafica.jpg" alt="Mouse Gamer" />
       <h3>Laptop Lenovo</h3>
       <p>S/ 2200.00</p>
       <button>Agregar al carrito</button>
     </div>
     <div class="producto">
-      <img src="https://via.placeholder.com/150" alt="Producto 2" />
+      <img src="${pageContext.request.contextPath}/imagenes/mousegamer.jpg" alt="Producto 2" />
       <h3>Mouse Gamer</h3>
       <p>S/ 150.00</p>
       <button>Agregar al carrito</button>
