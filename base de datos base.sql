@@ -1,5 +1,5 @@
 -- ===========================================
---  BASE DE DATOS: cineplanet_web
+--  BASE DE DATOS: cineplanet_web xd
 -- ===========================================
 CREATE DATABASE cineplanet_web CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE cineplanet_web;
