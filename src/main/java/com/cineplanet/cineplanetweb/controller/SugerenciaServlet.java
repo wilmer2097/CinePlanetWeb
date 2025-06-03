@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
-
+//URL para para encontrar el servlet 
 @WebServlet(name = "SugerenciaServlet", urlPatterns = {"/procesar-sugerencia"})
 public class SugerenciaServlet extends HttpServlet {
+    // Para inicializar el DAO de sugerencia
     private SugerenciaDAO dao;
-
+    
+    //Hereda 
     @Override
     public void init() throws ServletException {
         super.init();

@@ -3,6 +3,7 @@ package com.cineplanet.cineplanetweb.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+// Donde guarda esos valores guardados 
 public class Reclamacion {
     private int id;
     private String nombre;

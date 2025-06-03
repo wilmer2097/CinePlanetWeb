@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SugerenciaDAO {
+    //Presenta errores o eventos importantes .
     private static final Logger LOGGER = Logger.getLogger(SugerenciaDAO.class.getName());
 
     private static final String SQL_INSERT =
@@ -24,6 +25,7 @@ public class SugerenciaDAO {
         "SELECT * FROM sugerencias ORDER BY fecha_registro DESC";
 
     /** Inserta una sugerencia y devuelve el objeto con ID y fecha_registro rellenados */
+    // Crea un carton de huevos , parametro son los huevinos , creo el espacio 
     public Sugerencia create(Sugerencia s) throws SQLException {
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
@@ -40,7 +42,7 @@ public class SugerenciaDAO {
             if (rows == 0) {
                 throw new SQLException("Crear sugerencia falló, no se insertó ninguna fila.");
             }
-
+            // En caso de que fallo esto , recupera 
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 if (keys.next()) {
                     s.setId(keys.getInt(1));
