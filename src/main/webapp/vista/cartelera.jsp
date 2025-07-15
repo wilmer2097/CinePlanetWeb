@@ -23,12 +23,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link ${pageContext.request.requestURI.endsWith("/cartelera")?'active':''}" href="${pageContext.request.contextPath}/cartelera">Cartelera</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/proximosEstrenos">Próximos Estrenos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/proximos">Próximos Estrenos</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cines">Cines</a></li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/peliculasAnio?q=">Peliculas del año</a></li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/vista/sedes.html">Cines</a></li>
           <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/vista/promociones.html">Promociones</a></li>
           <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/ver-anexos">Ver Anexos</a></li>
           <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/preguntas-frecuentes">FAQ</a></li>

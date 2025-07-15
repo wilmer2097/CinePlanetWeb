@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                               http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-    <!-- Sugerencias -->
+<web-app version="4.0"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+
+    <!--  Sugerencias  -->
     <servlet>
         <servlet-name>SugerenciaServlet</servlet-name>
         <servlet-class>com.cineplanet.cineplanetweb.controller.SugerenciaServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>FuncionServlet</servlet-name>
-        <servlet-class>com.cineplanet.cineplanetweb.controller.FuncionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SugerenciaServlet</servlet-name>
         <url-pattern>/procesar-sugerencia</url-pattern>
     </servlet-mapping>
-    <!-- Reclamaciones -->
+
+    <!--  Reclamaciones  -->
     <servlet>
         <servlet-name>ReclamacionServlet</servlet-name>
         <servlet-class>com.cineplanet.cineplanetweb.controller.ReclamacionServlet</servlet-class>
@@ -26,14 +28,45 @@
         <servlet-name>ReclamacionServlet</servlet-name>
         <url-pattern>/procesar-reclamacion</url-pattern>
     </servlet-mapping>
+
+    <!--  Funciones  -->
+    <servlet>
+        <servlet-name>FuncionServlet</servlet-name>
+        <servlet-class>com.cineplanet.cineplanetweb.controller.FuncionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FuncionServlet</servlet-name>
         <url-pattern>/FuncionServlet</url-pattern>
     </servlet-mapping>
+
+    <!--  Películas de este año  -->
+    <servlet>
+        <servlet-name>PeliculasAnioServlet</servlet-name>
+        <servlet-class>com.cineplanet.cineplanetweb.controller.PeliculasAnioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PeliculasAnioServlet</servlet-name>
+        <url-pattern>/peliculasAnio</url-pattern>
+    </servlet-mapping>
+
+    <!--  Próximos estrenos  -->
+    <servlet>
+        <servlet-name>ProximosEstrenosServlet</servlet-name>
+        <servlet-class>com.cineplanet.cineplanetweb.controller.ProximosEstrenosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProximosEstrenosServlet</servlet-name>
+        <url-pattern>/proximosEstrenos</url-pattern>
+    </servlet-mapping>
+
+    <!-- Sesión, timeouts, etc. -->
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
+    <!-- Al arrancar la app, invocamos por defecto el Servlet de películas -->
     <welcome-file-list>
         <welcome-file>cartelera</welcome-file>
     </welcome-file-list>
+
 </web-app>

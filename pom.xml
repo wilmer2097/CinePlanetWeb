@@ -17,6 +17,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20250517</version>  <!-- o la versión más reciente -->
+        </dependency>
         <!-- Java EE 8 API (javax.*) - compatible con TomEE 8 -->
         <dependency>
             <groupId>javax</groupId>
