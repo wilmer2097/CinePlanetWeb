@@ -9,7 +9,7 @@ public class Conexion {
 
     // Credenciales y configuración de MySQL
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "Orla59654268-do";
+    private static final String PASSWORD = "root";
     private static final String DATABASE = "cineplanet_web";
     private static final String HOST     = "localhost";
     private static final int    PORT     = 3306;
