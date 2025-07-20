@@ -118,6 +118,16 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
+<servlet>
+  <servlet-name>PeliculaApiServlet</servlet-name>
+  <servlet-class>com.cineplanet.cineplanetweb.api.PeliculaApiServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>PeliculaApiServlet</servlet-name>
+  <url-pattern>/api/peliculas</url-pattern>
+</servlet-mapping>
+
+
     <!-- Al arrancar la app, invocamos por defecto el Servlet de películas -->
     <welcome-file-list>
         <welcome-file>cartelera</welcome-file>
