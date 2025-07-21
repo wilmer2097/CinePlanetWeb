@@ -29,7 +29,7 @@ public class CineController extends HttpServlet {
                 list.add(Cine.fromJson(arr.getJSONObject(i)));
             }
             req.setAttribute("cines", list);
-            req.getRequestDispatcher("/WEB-INF/views/perfil.jsp").forward(req, resp);
+            req.getRequestDispatcher("/vista/perfil.jsp").forward(req, resp);
         } catch (Exception e) {
             throw new ServletException(e);
         }

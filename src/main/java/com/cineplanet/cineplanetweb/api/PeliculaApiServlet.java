@@ -53,7 +53,7 @@ public class PeliculaApiServlet extends HttpServlet {
             this.error   = error;
             this.detalle = detalle;
         }
-        // getters...
+
         public String getError() { return error; }
         public String getDetalle() { return detalle; }
     }

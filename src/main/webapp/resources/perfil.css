@@ -20,6 +20,19 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.modal-cines-salas .modal-dialog {
+  max-width: 900px;
+  width: 100%;
+}
+
+.modal-cines-salas .modal-content {
+  border: 2px solid #444;
+  border-radius: .5rem;
+  background-color: #fafafa;
+}
+.modal-cines-salas.show {
+  z-index: 1100;
+}
 body {
   background-color: var(--background-dark);
   color: var(--text-color);
@@ -238,7 +251,7 @@ header {
 }
 
 .card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .management-card {
@@ -455,7 +468,7 @@ header {
 }
 
 .tab:not(.active) {
-    color: var(--text-muted-color);
+  color: var(--text-muted-color);
 }
 
 .tab-content {
@@ -553,12 +566,52 @@ header {
 /* --- Modales (Bootstrap Overrides) --- */
 .modal-content {
   background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+}
+
+.modal-header .modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--text-color);
 }
 
-.modal-title,
-.modal-body label.form-label {
-  color: var(--text-color) !important;
+.modal-header .btn-close {
+  filter: invert(1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  color: var(--text-color);
+}
+
+.modal-footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.modal-footer .btn-secondary {
+  opacity: 0.8;
+}
+
+.modal-footer .btn-secondary:hover {
+  opacity: 1;
+}
+
+/* Utility */
+.text-accent {
+  color: var(--accent-color);
 }
 
 /* ===== DISEÑO RESPONSIVE (MEDIA QUERIES) ===== */

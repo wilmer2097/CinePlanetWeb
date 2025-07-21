@@ -63,56 +63,6 @@
     <!--  NUEVOS SERVLETS PARA SUPABASE  -->
 
 
-    <!-- Gestión de Cines -->
-    <servlet>
-        <servlet-name>CineController</servlet-name>
-        <servlet-class>com.cineplanet.cineplanetweb.controller.CineController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CineController</servlet-name>
-        <url-pattern>/cines</url-pattern>
-    </servlet-mapping>
-
-    <!-- Gestión de Salas -->
-    <servlet>
-        <servlet-name>SalaController</servlet-name>
-        <servlet-class>com.cineplanet.cineplanetweb.controller.SalaController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SalaController</servlet-name>
-        <url-pattern>/salas</url-pattern>
-    </servlet-mapping>
-
-    <!-- Gestión de Promociones -->
-    <servlet>
-        <servlet-name>PromocionController</servlet-name>
-        <servlet-class>com.cineplanet.cineplanetweb.controller.PromocionController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>PromocionController</servlet-name>
-        <url-pattern>/promociones</url-pattern>
-    </servlet-mapping>
-
-    <!-- Gestión de Usuarios -->
-    <servlet>
-        <servlet-name>UsuarioController</servlet-name>
-        <servlet-class>com.cineplanet.cineplanetweb.controller.UsuarioController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UsuarioController</servlet-name>
-        <url-pattern>/usuarios</url-pattern>
-    </servlet-mapping>
-
-    <!-- Gestión de Reservas -->
-    <servlet>
-        <servlet-name>ReservaController</servlet-name>
-        <servlet-class>com.cineplanet.cineplanetweb.controller.ReservaController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ReservaController</servlet-name>
-        <url-pattern>/reservas</url-pattern>
-    </servlet-mapping>
-
     <!-- Sesión, timeouts, etc. -->
     <session-config>
         <session-timeout>30</session-timeout>

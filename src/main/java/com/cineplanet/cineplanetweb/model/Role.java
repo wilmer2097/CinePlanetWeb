@@ -1,7 +1,8 @@
 // src/main/java/com/cineplanet/cineplanetweb/model/Role.java
 package com.cineplanet.cineplanetweb.model;
-
-public class Role {
+import java.io.Serializable;
+public class Role implements Serializable{
+    private static final long serialVersionUID = 1L;
     private int id;
     private String nombre;
 

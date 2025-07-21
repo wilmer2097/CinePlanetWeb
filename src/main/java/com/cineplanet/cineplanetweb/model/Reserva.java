@@ -3,15 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.cineplanet.cineplanetweb.model;
+
 import org.json.JSONObject;
+import java.sql.Timestamp;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author wilme
  */
 public class Reserva {
     private int id, usuarioId, funcionId, cantidad;
-    private String asiento, estado, fechaReserva;
+    private String asiento, estado;
     private double total;
+    private Timestamp fechaReserva;  // cambiado de String a Timestamp
+    private User usuario;            // nuevo campo
 
     public static Reserva fromJson(JSONObject o) {
         Reserva r = new Reserva();
@@ -22,7 +29,13 @@ public class Reserva {
         r.cantidad     = o.getInt("cantidad");
         r.total        = o.getDouble("total");
         r.estado       = o.optString("estado");
-        r.fechaReserva = o.optString("fecha_reserva");
+        // pasamos fecha_reserva (ISO) a Timestamp
+        String fs = o.optString("fecha_reserva", null);
+        if (fs != null && !fs.isEmpty()) {
+            // parsea algo como "2025-07-20T15:30:00.000Z" o con offset "+00:00"
+            OffsetDateTime odt = OffsetDateTime.parse(fs, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            r.fechaReserva = Timestamp.from(odt.toInstant());
+        }
         return r;
     }
 
@@ -85,11 +98,11 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public String getFechaReserva() {
+    public Timestamp getFechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(String fechaReserva) {
+    public void setFechaReserva(Timestamp fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
 
@@ -101,5 +114,11 @@ public class Reserva {
         this.total = total;
     }
 
-    
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
 }

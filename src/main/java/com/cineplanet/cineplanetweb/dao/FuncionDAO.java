@@ -9,42 +9,62 @@ import java.util.List;
 public class FuncionDAO {
     
     public List<FuncionDTO> listarTodas() throws SQLException {
-        List<FuncionDTO> funciones = new ArrayList<>();
-        String sql =
-            "SELECT " +
-            "f.funcion_id, " +
-            "f.sala_id, " +
-            "f.pelicula_id, " +
-            "f.fecha_hora, " +
-            "f.idioma, " +
-            "f.precio_base, " +
-            "s.nombre as nombre_sala, " +
-            "p.titulo as nombre_pelicula " +
-            "FROM funcion f " +
-            "LEFT JOIN sala s ON f.sala_id = s.sala_id " +
-            "LEFT JOIN pelicula p ON f.pelicula_id = p.pelicula_id " +
-            "ORDER BY f.fecha_hora DESC";
+    List<FuncionDTO> funciones = new ArrayList<>();
 
-        try (Connection conn = Conexion.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            
-            while (rs.next()) {
-                FuncionDTO funcion = new FuncionDTO();
-                funcion.setFuncionId(rs.getInt("funcion_id"));
-                funcion.setSalaId(rs.getInt("sala_id"));
-                funcion.setPeliculaId(rs.getInt("pelicula_id"));
-                funcion.setFechaHora(rs.getTimestamp("fecha_hora"));
-                funcion.setIdioma(rs.getString("idioma"));
-                funcion.setPrecioBase(rs.getBigDecimal("precio_base"));
-                funcion.setNombreSala(rs.getString("nombre_sala"));
-                funcion.setNombrePelicula(rs.getString("nombre_pelicula"));
-                funciones.add(funcion);
+    String sql =
+        "SELECT " +
+        "f.funcion_id, " +
+        "f.sala_id, " +
+        "f.pelicula_id, " +
+        "f.fecha_hora, " +
+        "f.idioma, " +
+        "f.precio_base, " +
+        "s.nombre as nombre_sala, " +
+        "p.titulo as nombre_pelicula " +
+        "FROM funcion f " +
+        "LEFT JOIN sala s ON f.sala_id = s.sala_id " +
+        "LEFT JOIN pelicula p ON f.pelicula_id = p.pelicula_id " +
+        "ORDER BY f.fecha_hora DESC";
+
+    try (Connection conn = Conexion.getConnection()) {
+        // 1) ¿A qué catálogo (BD) estamos conectando?
+        System.out.println("=== FuncionDAO.listarTodas() conectado al catálogo: " 
+            + conn.getCatalog());
+        // 2) Muestra la URL y usuario de la conexión
+        DatabaseMetaData md = conn.getMetaData();
+        System.out.println("    URL = " + md.getURL());
+        System.out.println("    Usuario = " + md.getUserName());
+        // 3) Ejecuta un COUNT antes de recorrer para ver cuántas filas hay
+        try (PreparedStatement psCount = conn.prepareStatement("SELECT COUNT(*) FROM funcion");
+             ResultSet rsCount = psCount.executeQuery()) {
+            if (rsCount.next()) {
+                System.out.println("    COUNT(*) en funcion = " + rsCount.getInt(1));
             }
         }
-        
-        return funciones;
+        // 4) Ahora ejecuta tu consulta real
+        try (PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            int contador = 0;
+            while (rs.next()) {
+                FuncionDTO f = new FuncionDTO();
+                f.setFuncionId(rs.getInt("funcion_id"));
+                f.setSalaId(rs.getInt("sala_id"));
+                f.setPeliculaId(rs.getInt("pelicula_id"));
+                f.setFechaHora(rs.getTimestamp("fecha_hora"));
+                f.setIdioma(rs.getString("idioma"));
+                f.setPrecioBase(rs.getBigDecimal("precio_base"));
+                f.setNombreSala(rs.getString("nombre_sala"));
+                f.setNombrePelicula(rs.getString("nombre_pelicula"));
+                funciones.add(f);
+                contador++;
+            }
+            System.out.println("    filas recuperadas por listarTodas(): " + contador);
+        }
     }
+
+    return funciones;
+}
+
     
     public FuncionDTO obtenerPorId(int funcionId) throws SQLException {
         String sql =

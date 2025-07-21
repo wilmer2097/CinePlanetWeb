@@ -51,17 +51,21 @@ public User validate(String email, String password) throws SQLException {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    User u = new User();
-                    u.setId(rs.getInt("usuario_id"));
-                    u.setNombre(rs.getString("nombre"));
-                    u.setEmail(rs.getString("email"));
-                    u.setPassword(rs.getString("password"));
-                    u.setTelefono(rs.getString("telefono"));
-                    u.setFechaReg(rs.getTimestamp("fecha_reg"));
-                    return u;
-                } else {
-                    return null;  // usuario no existe
-                }
+                User u = new User();
+                u.setId(rs.getInt("usuario_id"));
+                u.setNombre(rs.getString("nombre"));
+                u.setEmail(rs.getString("email"));
+                u.setPassword(rs.getString("password"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setFechaReg(rs.getTimestamp("fecha_reg"));
+
+                // ——> AQUÍ cargamos también los roles desde la tabla intermedia
+                List<Role> roles = findRolesByUserId(id);
+                u.setRoles(roles);
+
+                return u;
+           }
+            return null;  // usuario no existe
             }
         }
     }
